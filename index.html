@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zebray03 的 GitHub 主页</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+</head>
+<body>
+<!-- 导航栏 -->
+<header class="header" id="header">
+    <div class="container">
+        <nav class="nav">
+            <a href="#" class="logo">Zebray03</a>
+            <div class="nav-links" id="navLinks">
+                <a href="#about" class="nav-link">关于我</a>
+<!--                <a href="#projects" class="nav-link">项目</a>-->
+                <a href="#contact" class="nav-link">联系</a>
+                <a href="notes.html" class="nav-link">笔记</a>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- 英雄区域 -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>你好，我是 <span>Zebray03</span></h1>
+            <p class="hero-subtitle">I'm a Porsche with no brakes.</p>
+            <div class="social-links">
+                <a href="https://github.com/zebray03" class="social-link" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:zebray@foxmail.com" class="social-link" target="_blank" title="邮箱">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 关于我 -->
+<section id="about" class="about">
+    <div class="container">
+        <h2 class="section-title">关于我</h2>
+        <div class="about-content">
+            <div class="about-info">
+                <p>嗨，我是 Zebray03，一个对技术充满热情的开发者。目前专注于前端开发和开源项目，喜欢通过代码解决问题并分享知识。</p>
+                <p>在 GitHub 上探索我的开源项目，或者通过下方的联系方式与我交流！</p>
+
+                <div class="info-grid">
+                    <!-- 技能专长 -->
+                    <div class="info-item">
+                        <h3 class="info-title"><i class="fas fa-code"></i> 技能专长</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Vue</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">GitHub</span>
+                        </div>
+                    </div>
+
+                    <!-- 教育经历 -->
+                    <div class="info-item">
+                        <h3 class="info-title"><i class="fas fa-graduation-cap"></i> 教育经历</h3>
+                        <div class="education-list">
+                            <div class="education-item">
+                                <h4 class="edu-title">信息与计算科学、软件工程 - 学士学位</h4>
+                                <p class="edu-institute">南京大学 | 2021年 - 2025年</p>
+                            </div>
+                            <div class="education-item">
+                                <h4 class="edu-title">在读研究生</h4>
+                                <p class="edu-institute">清华大学THUIR实验室 | 2025年 - 至今</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--&lt;!&ndash; 项目展示 &ndash;&gt;-->
+<!--<section id="projects" class="projects">-->
+<!--    <div class="container">-->
+<!--        <h2 class="section-title">我的项目</h2>-->
+<!--        <div class="projects-grid">-->
+<!--            &lt;!&ndash; 项目卡片 1 &ndash;&gt;-->
+<!--            <div class="project-card">-->
+<!--                <div class="project-image">-->
+<!--                    <img src="https://picsum.photos/600/400?random=1" alt="项目预览图" class="project-thumbnail">-->
+<!--                </div>-->
+<!--                <div class="project-info">-->
+<!--                    <h3 class="project-title">前端学习笔记</h3>-->
+<!--                    <p class="project-desc">记录前端技术学习过程中的知识点、案例和实战经验，帮助新手快速入门。</p>-->
+<!--                    <div class="project-meta">-->
+<!--                        <span class="project-tech">技术栈：HTML, CSS, JavaScript</span>-->
+<!--                    </div>-->
+<!--                    <div class="project-links">-->
+<!--                        <a href="https://github.com/zebray03/frontend-notes" class="project-btn" target="_blank">-->
+<!--                            <i class="fab fa-github"></i> 查看代码-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; 项目卡片 2 &ndash;&gt;-->
+<!--            <div class="project-card">-->
+<!--                <div class="project-image">-->
+<!--                    <img src="https://picsum.photos/600/400?random=2" alt="项目预览图" class="project-thumbnail">-->
+<!--                </div>-->
+<!--                <div class="project-info">-->
+<!--                    <h3 class="project-title">天气应用</h3>-->
+<!--                    <p class="project-desc">实时天气查询应用，支持城市搜索、天气趋势和详细天气信息展示，响应式设计适配各种设备。</p>-->
+<!--                    <div class="project-meta">-->
+<!--                        <span class="project-tech">技术栈：React, Tailwind CSS, OpenWeather API</span>-->
+<!--                    </div>-->
+<!--                    <div class="project-links">-->
+<!--                        <a href="https://github.com/zebray03/weather-app" class="project-btn" target="_blank">-->
+<!--                            <i class="fab fa-github"></i> 查看代码-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; 项目卡片 3 &ndash;&gt;-->
+<!--            <div class="project-card">-->
+<!--                <div class="project-image">-->
+<!--                    <img src="https://picsum.photos/600/400?random=3" alt="项目预览图" class="project-thumbnail">-->
+<!--                </div>-->
+<!--                <div class="project-info">-->
+<!--                    <h3 class="project-title">待办事项管理</h3>-->
+<!--                    <p class="project-desc">简洁实用的待办事项管理工具，支持任务分类、优先级标记和完成状态管理，帮助提高工作效率。</p>-->
+<!--                    <div class="project-meta">-->
+<!--                        <span class="project-tech">技术栈：Vue, localStorage</span>-->
+<!--                    </div>-->
+<!--                    <div class="project-links">-->
+<!--                        <a href="https://github.com/zebray03/todo-app" class="project-btn" target="_blank">-->
+<!--                            <i class="fab fa-github"></i> 查看代码-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!-- 联系我 -->
+<section id="contact" class="contact">
+    <div class="container">
+        <h2 class="section-title">联系我</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <div class="contact-detail">
+                        <h3 class="contact-title">邮箱</h3>
+                        <a href="mailto:zebray@foxmail.com" class="contact-value">zebray@foxmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github contact-icon"></i>
+                    <div class="contact-detail">
+                        <h3 class="contact-title">GitHub</h3>
+                        <a href="https://github.com/zebray03" class="contact-value" target="_blank">github.com/zebray03</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2025 Zebray03. 保留所有权利。</p>
+        <div class="footer-links">
+            <a href="https://github.com/zebray03" target="_blank">GitHub</a>
+            <a href="#">隐私政策</a>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zebray03 的笔记</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.2.12/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+</head>
+<body>
+<!-- 导航栏 -->
+<header class="header" id="header">
+    <div class="container">
+        <nav class="nav">
+            <a href="index.html" class="logo">Zebray03</a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html#about" class="nav-link">关于我</a>
+<!--                <a href="index.html#projects" class="nav-link">项目</a>-->
+                <a href="index.html#contact" class="nav-link">联系</a>
+                <a href="notes.html" class="nav-link active">笔记</a>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- 笔记展示区域 -->
+<section class="notes page-padding">
+    <div class="container">
+        <h2 class="section-title">我的笔记</h2>
+
+        <div class="notes-container">
+            <!-- 分类列表区域 -->
+            <div class="categories-list" id="categoriesList"></div>
+
+            <!-- 笔记内容区域 -->
+            <div id="noteContent" class="note-content">
+                <div class="empty-state">
+                    <i class="fas fa-book-open"></i>
+                    <p>请从左侧选择一个笔记查看内容</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2025 Zebray03. 保留所有权利。</p>
+        <div class="footer-links">
+            <a href="https://github.com/zebray03" target="_blank">GitHub</a>
+            <a href="#">隐私政策</a>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/js/notes.js"></script>
+</body>
+</html>
