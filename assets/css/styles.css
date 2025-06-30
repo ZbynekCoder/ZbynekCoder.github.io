@@ -430,7 +430,7 @@ section {
 
 .note-item:hover, .note-item.active {
     background-color: var(--primary-color);
-    color: white;
+    color: black;
 }
 
 .note-content {
