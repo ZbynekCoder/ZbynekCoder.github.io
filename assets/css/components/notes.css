@@ -1,0 +1,268 @@
+.notes {
+    background-color: #f9f9f9;
+}
+
+.notes-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.categories-list {
+    flex: 0 0 250px;
+    max-width: 250px;
+}
+
+.category-container {
+    margin-bottom: 1rem;
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.category-header:hover {
+    background-color: #e9ecef;
+}
+
+.category-header h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.category-icon {
+    transition: transform 0.2s;
+}
+
+.notes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.note-item {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.note-item:hover {
+    background-color: #e9ecef;
+    border-left-color: #007bff;
+}
+
+.note-item.active {
+    background-color: #e9ecef;
+    border-left-color: #007bff;
+}
+
+.note-content {
+    flex: 1;
+    min-height: 500px;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    color: #6c757d;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.loading-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #007bff;
+}
+
+.error-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    color: #dc3545;
+}
+
+.error-message i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Markdown预览样式 */
+.markdown-preview {
+    line-height: 1.8;
+}
+
+.markdown-preview h1, .markdown-preview h2, .markdown-preview h3 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.markdown-preview p {
+    margin-bottom: 20px;
+}
+
+.markdown-preview pre {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.markdown-preview code {
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    font-size: 0.9rem;
+}
+
+.markdown-preview blockquote {
+    border-left: 4px solid #ddd;
+    padding-left: 15px;
+    margin-left: 0;
+    color: #777;
+    font-style: italic;
+}
+
+.markdown-preview ul, .markdown-preview ol {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.markdown-preview ul {
+    list-style-type: disc;
+}
+
+.markdown-preview ol {
+    list-style-type: decimal;
+}
+
+.markdown-preview li {
+    margin-bottom: 10px;
+}
+
+.markdown-preview a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.markdown-preview a:hover {
+    color: var(--primary-dark);
+}
+
+.markdown-preview img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.markdown-preview table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.markdown-preview th,
+.markdown-preview td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.markdown-preview th {
+    background-color: #f8f9fa;
+}
+
+/* KaTeX公式样式 */
+.katex {
+    font-size: 1.05em !important;
+}
+
+.katex-display {
+    display: block;
+    margin: 1.5em 0;
+    text-align: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/* 行内公式样式 */
+.katex-inline {
+    background-color: #f8f9fa;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+    border: 1px solid #e9ecef;
+}
+
+/* 公式容器 */
+.equation-container {
+    position: relative;
+    margin: 1.5em 0;
+    padding: 1em;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+/* 公式编号 */
+.equation-number {
+    position: absolute;
+    right: 1em;
+    bottom: 0.5em;
+    color: #6c757d;
+    font-size: 0.9em;
+}
+
+/* 公式标签 */
+.equation-label {
+    display: block;
+    text-align: center;
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-top: 0.5em;
+}
+
+/* 响应式布局 */
+@media (max-width: 768px) {
+    .notes-container {
+        flex-direction: column;
+    }
+
+    .categories-list {
+        flex: 1;
+        max-width: none;
+        margin-bottom: 1.5rem;
+    }
+
+    .katex-display {
+        font-size: 0.9em !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .equation-container {
+        padding: 0.8em 0.5em;
+    }}

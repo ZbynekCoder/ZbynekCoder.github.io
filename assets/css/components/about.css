@@ -1,0 +1,97 @@
+.about {
+    background-color: var(--white-color);
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.skills {
+    margin-top: 20px;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.skill-tag {
+    padding: 6px 12px;
+    background-color: #f0f2f5;
+    color: var(--gray-color);
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.about .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.info-item {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.info-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+}
+
+.info-title i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+.education-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.education-item {
+    padding-left: 20px;
+    position: relative;
+    border-left: 2px solid #e0e0e0;
+}
+
+.education-item::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: -11px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+}
+
+.edu-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--secondary-color);
+}
+
+.edu-institute {
+    font-size: 0.9rem;
+    color: var(--gray-color);
+    margin-bottom: 10px;
+}
+
+/* 响应式布局 */
+@media (max-width: 768px) {
+    .about .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
