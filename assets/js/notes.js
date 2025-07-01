@@ -330,22 +330,37 @@ const NOTES_CONFIG = [
         ]
     },
     {
-        category: "逻辑学",
-        notes: [
+        category: "杂项",
+        children: [
             {
-                id: 'traditional categorical logic',
-                title: '传统词项逻辑',
-                file: 'assets/notes/logic/传统词项逻辑.md'
+                category: "逻辑学",
+                notes: [
+                    {
+                        id: 'traditional categorical Logic',
+                        title: '传统词项逻辑',
+                        file: 'assets/notes/Logic/传统词项逻辑.md'
+                    },
+                    {
+                        id: 'propositional Logic',
+                        title: '命题逻辑',
+                        file: 'assets/notes/Logic/命题逻辑.md'
+                    },
+                    {
+                        id: 'traditional inductive Logic',
+                        title: '传统归纳逻辑',
+                        file: 'assets/notes/Logic/传统归纳逻辑.md'
+                    }
+                ]
             },
             {
-                id: 'propositional logic',
-                title: '命题逻辑',
-                file: 'assets/notes/logic/命题逻辑.md'
-            },
-            {
-                id: 'traditional inductive logic',
-                title: '传统归纳逻辑',
-                file: 'assets/notes/logic/传统归纳逻辑.md'
+                category: "西方音乐通论",
+                notes: [
+                    {
+                        id: 'western music',
+                        title: '西方音乐通论',
+                        file: 'assets/notes/Western Music/西方音乐通论.md'
+                    }
+                ]
             }
         ]
     }
@@ -362,8 +377,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const noteContent = document.getElementById('noteContent');
 
     // 初始化分类列表
-    function initCategoriesList() {
-        NOTES_CONFIG.forEach(category => {
+    function initCategoriesList(config, parentContainer) {
+        config.forEach(category => {
             const categoryContainer = document.createElement('div');
             categoryContainer.className = 'category-container';
 
@@ -381,30 +396,32 @@ document.addEventListener('DOMContentLoaded', function() {
             notesList.style.display = 'none'; // 默认隐藏
 
             // 添加该分类下的所有笔记
-            category.notes.forEach(note => {
-                const li = document.createElement('li');
-                li.className = 'note-item';
-                li.textContent = note.title;
-                li.dataset.id = note.id;
-                li.dataset.file = note.file;
-                li.dataset.category = category.category;
+            if (category.notes) {
+                category.notes.forEach(note => {
+                    const li = document.createElement('li');
+                    li.className = 'note-item';
+                    li.textContent = note.title;
+                    li.dataset.id = note.id;
+                    li.dataset.file = note.file;
+                    li.dataset.category = category.category;
 
-                li.addEventListener('click', function() {
-                    // 更新URL参数
-                    const url = new URL(window.location.href);
-                    url.searchParams.set('category', this.dataset.category);
-                    url.searchParams.set('note', this.dataset.id);
-                    window.history.pushState({}, '', url);
+                    li.addEventListener('click', function() {
+                        // 更新URL参数
+                        const url = new URL(window.location.href);
+                        url.searchParams.set('category', this.dataset.category);
+                        url.searchParams.set('note', this.dataset.id);
+                        window.history.pushState({}, '', url);
 
-                    // 加载对应笔记
-                    loadNote(this.dataset.file);
+                        // 加载对应笔记
+                        loadNote(this.dataset.file);
 
-                    // 设置当前笔记为激活状态
-                    setActiveNote(this.dataset.id);
+                        // 设置当前笔记为激活状态
+                        setActiveNote(this.dataset.id);
+                    });
+
+                    notesList.appendChild(li);
                 });
-
-                notesList.appendChild(li);
-            });
+            }
 
             // 点击分类标题切换展开/折叠状态
             categoryHeader.addEventListener('click', function() {
@@ -424,7 +441,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             categoryContainer.appendChild(categoryHeader);
             categoryContainer.appendChild(notesList);
-            categoriesList.appendChild(categoryContainer);
+            parentContainer.appendChild(categoryContainer);
+
+            // 递归处理子分类
+            if (category.children) {
+                initCategoriesList(category.children, notesList);
+            }
         });
 
         // 处理URL参数，自动展开对应分类并加载笔记
@@ -596,5 +618,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // 初始化分类列表
-    initCategoriesList();
+    initCategoriesList(NOTES_CONFIG, categoriesList);
 });
