@@ -1,0 +1,367 @@
+export const NOTES_CONFIG = [
+    {
+        category: "数据结构",
+        notes: [
+            {
+                id: 'asymptotic',
+                title: '渐进分析',
+                file: 'todo'
+            },
+            {
+                id: 'dnc',
+                title: '分治与减治分析',
+                file: 'todo'
+            },
+            {
+                id: 'vector',
+                title: '向量Vector',
+                file: 'todo'
+            },
+            {
+                id: 'stack-queue',
+                title: '栈Stack、队列Queue',
+                file: 'todo'
+            },
+            {
+                id: 'list',
+                title: '链表List、跳表SkipList',
+                file: 'todo'
+            },
+            {
+                id: 'hashtable',
+                title: '散列表HashTable',
+                file: 'todo'
+            },
+            {
+                id: 'binary tree',
+                title: '二叉树BinaryTree',
+                file: 'todo'
+            },
+            {
+                id: 'search tree',
+                title: '搜索树SearchTree',
+                file: 'todo'
+            },
+            {
+                id: 'graph',
+                title: '图Graph',
+                file: 'todo'
+            },
+            {
+                id: 'priority queue',
+                title: '优先级队列PriorityQueue',
+                file: 'todo'
+            },
+            {
+                id: 'string',
+                title: '字符串匹配',
+                file: 'todo'
+            },
+            {
+                id: 'sorting',
+                title: '排序Sorting',
+                file: 'todo'
+            },
+            {
+                id: 'selection',
+                title: '选择问题Selection',
+                file: 'todo'
+            },
+            {
+                id: 'exercise',
+                title: '习题',
+                file: 'todo'
+            }
+        ]
+    },
+    {
+        category: "计算机组成原理",
+        notes: [
+            {
+                id: 'device number',
+                title: '机器数表示和运算',
+                file: 'todo'
+            },
+            {
+                id: 'instruction',
+                title: '指令系统',
+                file: 'todo'
+            },
+            {
+                id: 'cpu',
+                title: 'CPU',
+                file: 'todo'
+            },
+            {
+                id: 'memory',
+                title: '存储器',
+                file: 'todo'
+            },
+            {
+                id: 'io',
+                title: 'I/O',
+                file: 'todo'
+            },
+            {
+                id: 'bus',
+                title: '总线',
+                file: 'todo'
+            },
+            {
+                id: 'exercise',
+                title: '习题',
+                file: 'todo'
+            }
+        ]
+    },
+    {
+        category: "操作系统",
+        notes: [
+            {
+                id: 'intro',
+                title: '操作系统框架',
+                file: 'assets/notes/operation system/intro/操作系统框架.md'
+            },
+            {
+                id: 'cpu-management',
+                title: 'CPU管理',
+                file: 'todo'
+            },
+            {
+                id: 'memory-management',
+                title: '内存管理',
+                file: 'todo'
+            },
+            {
+                id: 'file-management',
+                title: '文件管理',
+                file: 'todo'
+            },
+            {
+                id: 'exercise',
+                title: '习题',
+                file: 'todo'
+            }
+        ]
+    },
+    {
+        category: "计算机网络",
+        notes: [
+            {
+                id: 'ref-model',
+                title: '网络参考模型',
+                file: 'todo'
+            },
+            {
+                id: 'physical layer',
+                title: '物理层',
+                file: 'todo'
+            },
+            {
+                id: 'data link layer',
+                title: '数据链路层',
+                file: 'todo'
+            },
+            {
+                id: 'ethernet',
+                title: '以太网',
+                file: 'todo'
+            },
+            {
+                id: 'wifi',
+                title: 'IEEE 802.11（WiFi）',
+                file: 'todo'
+            },
+            {
+                id: 'network layer',
+                title: '网络层',
+                file: 'todo'
+            },
+            {
+                id: 'transition layer',
+                title: '传输层',
+                file: 'todo'
+            },
+            {
+                id: 'application layer',
+                title: '应用层',
+                file: 'todo'
+            },
+            {
+                id: 'exercise',
+                title: '习题',
+                file: 'todo'
+            }
+        ]
+    },
+    {
+        category: "设计模式",
+        notes: [
+            {
+                id: 'principle',
+                title: '面向对象设计原则',
+                file: 'todo'
+            },
+            {
+                id: 'factory pattern',
+                title: '工厂模式Factory Pattern',
+                file: 'todo'
+            },
+            {
+                id: 'builder pattern',
+                title: '建造者模式Builder Pattern',
+                file: 'todo'
+            },
+            {
+                id: 'strategy pattern',
+                title: '策略模式Strategy Pattern',
+                file: 'todo'
+            },
+            {
+                id: 'observer pattern',
+                title: '观察者模式Observer Pattern',
+                file: 'todo'
+            },
+            {
+                id: 'decorator pattern',
+                title: '装饰模式Decorator Pattern',
+                file: 'todo'
+            },
+            {
+                id: 'adapter pattern',
+                title: '适配器模式Adapter Pattern',
+                file: 'todo'
+            },
+            {
+                id: 'composite pattern',
+                title: '组合模式Composite Pattern',
+                file: 'todo'
+            },
+            {
+                id: 'bridge pattern',
+                title: '桥接模式Bridge Pattern',
+                file: 'todo'
+            },
+            {
+                id: 'mediator pattern',
+                title: '中介者模式Mediator Pattern',
+                file: 'todo'
+            },
+            {
+                id: 'facade pattern',
+                title: '外观模式Facade Pattern',
+                file: 'todo'
+            },
+            {
+                id: 'flyweight pattern',
+                title: '享元模式Flyweight Pattern',
+                file: 'todo'
+            },
+            {
+                id: 'proxy pattern',
+                title: '代理模式Proxy Pattern',
+                file: 'todo'
+            },
+            {
+                id: 'template method pattern',
+                title: '模板方法模式Template Method Pattern',
+                file: 'todo'
+            },
+            {
+                id: 'prototype pattern',
+                title: '原型模式Prototype Pattern',
+                file: 'todo'
+            },
+            {
+                id: 'state pattern',
+                title: '状态模式State Pattern',
+                file: 'todo'
+            },
+            {
+                id: 'command pattern',
+                title: '命令模式Command Pattern',
+                file: 'todo'
+            }
+        ]
+    },
+    {
+        category: "OO-Starter",
+        notes: [
+            {
+                id: 'intro',
+                title: '1.从C到C++的面向对象简介',
+                file: 'assets/notes/OO-Starter/chapter1/1.从C到C++的面向对象简介.md'
+            },
+            {
+                id: 'uml',
+                title: '2.类图与UML',
+                file: 'assets/notes/OO-Starter/chapter2/2.类图与UML.md'
+            },
+            {
+                id: 'encapsulation',
+                title: '3.封装',
+                file: 'assets/notes/OO-Starter/chapter3/3.封装.md'
+            },
+            {
+                id: 'inheritance',
+                title: '4.继承',
+                file: 'assets/notes/OO-Starter/chapter4/4.继承.md'
+            },
+            {
+                id: 'polymorphism',
+                title: '5.多态',
+                file: 'assets/notes/OO-Starter/chapter5/5.多态.md'
+            },
+            {
+                id: 'pattern',
+                title: '6.面向对象设计原则与简单设计模式',
+                file: 'assets/notes/OO-Starter/chapter6/6.面向对象设计原则与简单设计模式.md'
+            },
+            {
+                id: 'python-easy',
+                title: 'A1.简单Python语法',
+                file: 'assets/notes/OO-Starter/appendix1/A1.简单Python语法.md'
+            },
+            {
+                id: 'python-oop',
+                title: 'A2.Python-OOP',
+                file: 'assets/notes/OO-Starter/appendix2/A2.Python-OOP.md'
+            }
+        ]
+    },
+    {
+        category: "杂项",
+        children: [
+            {
+                category: "逻辑学",
+                notes: [
+                    {
+                        id: 'traditional categorical Logic',
+                        title: '传统词项逻辑',
+                        file: 'assets/notes/Logic/传统词项逻辑.md'
+                    },
+                    {
+                        id: 'propositional Logic',
+                        title: '命题逻辑',
+                        file: 'assets/notes/Logic/命题逻辑.md'
+                    },
+                    {
+                        id: 'traditional inductive Logic',
+                        title: '传统归纳逻辑',
+                        file: 'assets/notes/Logic/传统归纳逻辑.md'
+                    }
+                ]
+            },
+            {
+                category: "西方音乐通论",
+                notes: [
+                    {
+                        id: 'western music',
+                        title: '西方音乐通论',
+                        file: 'assets/notes/Western Music/西方音乐通论.md'
+                    }
+                ]
+            }
+        ]
+    }
+];
