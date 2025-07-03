@@ -100,7 +100,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     noteItems.forEach(item => {
                         if (item.dataset.id === noteParam) {
                             item.click(); // 触发点击事件加载笔记
-                            return;
                         }
                     });
                 }

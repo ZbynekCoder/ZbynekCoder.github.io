@@ -68,7 +68,7 @@ export const NOTES_CONFIG = [
                 file: 'todo'
             },
             {
-                id: 'exercise',
+                id: 'exercise-for-ds',
                 title: '习题',
                 file: 'todo'
             }
@@ -108,7 +108,7 @@ export const NOTES_CONFIG = [
                 file: 'todo'
             },
             {
-                id: 'exercise',
+                id: 'exercise-for-co',
                 title: '习题',
                 file: 'todo'
             }
@@ -138,7 +138,7 @@ export const NOTES_CONFIG = [
                 file: 'todo'
             },
             {
-                id: 'exercise',
+                id: 'exercise-for-os',
                 title: '习题',
                 file: 'todo'
             }
@@ -188,7 +188,7 @@ export const NOTES_CONFIG = [
                 file: 'todo'
             },
             {
-                id: 'exercise',
+                id: 'exercise-for-cn',
                 title: '习题',
                 file: 'todo'
             }
