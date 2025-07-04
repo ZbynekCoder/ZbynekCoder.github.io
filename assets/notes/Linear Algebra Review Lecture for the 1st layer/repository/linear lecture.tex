@@ -1,0 +1,1573 @@
+\documentclass[lang=cn,newtx,10pt,scheme=chinese]{elegantbook}
+
+\title{线性代数辅导讲义}
+\subtitle{一层次}
+\author{Zebray}
+\extrainfo{Attention is all you need.}
+
+\setcounter{tocdepth}{3}
+
+\cover{cover.jpg}
+
+% 本文档命令
+\usepackage{array}
+\newcommand{\ccr}[1]{\makecell{{\color{#1}\rule{1cm}{1cm}}}}
+
+% 修改标题页的橙色带
+\definecolor{customcolor}{RGB}{32,178,170}
+\colorlet{coverlinecolor}{customcolor}
+\usepackage{cprotect}
+
+\addbibresource[location=local]{reference.bib} % 参考文献，不要删除
+
+\usepackage{rotating}
+
+\begin{document}
+
+\maketitle
+\frontmatter
+
+\pagestyle{empty} % 删除页码
+
+\tableofcontents
+
+\mainmatter
+
+\chapter{行列式计算}
+
+\begin{introduction}[需要熟悉的知识点]
+	\item 2阶、3阶行列式手算
+	\item 三角阵和反三角阵的行列式
+	\item 分块三角阵和分块反三角阵的行列式
+	\item 3种初等变换及对应行列式变化
+	\item 按某行或某列展开的Laplace公式
+	\item Vandemonde行列式
+	\item 余子式$M_{ij}$与代数余子式$A_{ij}$定义及性质
+	\item $\left|AB\right| = \left|A\right| \left|B\right|$
+\end{introduction}
+
+\section{直接计算}
+
+\subsection{初等变换}
+\par
+\textbf{务必多加练习！}
+\par
+一般步骤：
+\begin{itemize}
+  	\item 通过初等变换
+  	\item 得到某一行（列）全为1
+		\begin{itemize}
+			\item 某一行（列）全相等亦可，只需提出即得到全1
+		\end{itemize}
+    \item 再次初等变换得到某一行（列）只有一个1
+    \item Laplace公式
+\end{itemize}
+\par
+常见特征：
+\begin{itemize}
+	\item 每行（列）和全相等
+	\item 每行（列）与其相邻行（列）有明显规律
+	\item 某行（列）只有个别项不是0
+\end{itemize}
+
+\begin{exercise}
+  (2015W-1-1) 设$A=(a_{ij})_{n \times n}, a_{ij} = ij$，求$\left| A \right|.$
+\end{exercise}
+
+\begin{exercise}
+  (2017S-5) 计算行列式$
+  D_n = 
+  \left|
+	\begin{array}{cccccc}
+		b       & b       & \cdots & b      & b       & a       \\
+		b       & b       & \cdots & b      & a       & b       \\
+		b       & b       & \cdots & a      & b       & b       \\
+		\vdots  & \vdots  &        & \vdots & \vdots  & \vdots  \\
+		b       & a       & \cdots & b      & b       & b       \\
+		a       & b       & \cdots & b      & b       & b       \\
+	\end{array}
+  \right|
+  .
+  $
+\end{exercise}
+
+\begin{exercise}
+  (2018W-1-5) 计算行列式$
+  D_n = 
+  \left|
+	\begin{array}{ccccc}
+		1       & 2       & 3       & \cdots  & n       \\
+		2       & 3       & 4       & \cdots  & n-1     \\
+		3       & 4       & 5       & \cdots  & n-2     \\
+		\vdots  & \vdots  & \vdots  &         & \vdots  \\
+		n       & n-1     & n-2     & \cdots  & 1       \\
+	\end{array}
+  \right|
+  .
+  $
+\end{exercise}
+
+\begin{exercise}
+  (2019S-4) 计算$f(\pi)$与$f'(\pi)$，此处
+  $$
+    f(x) =
+    \left|
+	\begin{array}{ccc}
+		a_1 & b_1 & a_1 x^2 + b_1 x + c_1 \\
+		a_2 & b_2 & a_2 x^2 + b_2 x + c_2 \\
+		a_3 & b_3 & a_3 x^2 + b_3 x + c_3 \\
+	\end{array}
+    \right|
+	.
+  $$
+\end{exercise}
+
+\begin{exercise}
+  (2019W-1-1) 计算行列式$D = 
+  \left|
+	\begin{array}{cccc}
+		2   & 3   & 4   & 5 \\
+		1   & 2   & 3   & 4 \\
+		-1  & 3   & 1   & 0 \\
+		1   & 2   & 1   & 3 \\
+	\end{array}
+  \right|
+  .
+  $
+\end{exercise}
+
+\begin{exercise}
+  (2020S-1-1)  计算行列式$D = 
+  \left|
+	\begin{array}{cccc}
+		1   & 2   & 3   & 4 \\
+		-1  & 1   & 2   & 3 \\
+		0   & -1  & 1   & 2 \\
+		0   & 0   & -1  & 1 \\
+	\end{array}
+  \right|
+  .
+  $
+\end{exercise}
+
+\subsection{可递推型}
+常见特征为使用Laplace公式将行列式降阶后变为所求行列式的低阶版本或一个局部。
+\begin{itemize}
+	\item 三对角阵或反三对角阵
+	\item 中心对称且边界稀疏
+\end{itemize}
+递推式通过Laplace公式得到。
+
+\begin{example}
+	(2016W-1-5)计算行列式$
+	D_n = 
+	\left|
+	\begin{array}{cccccc}
+		0       & 0       & \cdots & 0      & 1       & 2       \\
+		0       & 0       & \cdots & 1      & 2       & 1       \\
+		0       & 0       & \cdots & 2      & 1       & 0       \\
+		\vdots  & \vdots  &        & \vdots & \vdots  & \vdots  \\
+		1       & 2       & \cdots & 0      & 0       & 0       \\
+		2       & 1       & \cdots & 0      & 0       & 0       \\
+	\end{array}
+	\right|
+	.
+	$
+\end{example}
+
+\begin{solution}
+	\begin{align*}
+		D_n &= 
+		(-1)^{n+1} \times 2
+		\left|
+		\begin{array}{ccccc}
+			0       & 0       & \cdots & 1      & 2         \\
+			0       & 0       & \cdots & 2      & 1         \\
+			\vdots  & \vdots  &        & \vdots & \vdots	\\
+			1       & 2       & \cdots & 0      & 0         \\
+			2       & 1       & \cdots & 0      & 0         \\
+		\end{array}
+		\right|
+		+ (-1)^{n+2}
+		\left|
+		\begin{array}{ccccc}
+			0       & 0       & \cdots & 0      & 1         \\
+			0       & 0       & \cdots & 2      & 1         \\
+			\vdots  & \vdots  &        & \vdots & \vdots	\\
+			1       & 2       & \cdots & 0      & 0         \\
+			2       & 1       & \cdots & 0      & 0         \\
+		\end{array}
+		\right| \\
+		&= (-1)^{n+1} \times 2D_{n-1} + (-1)^n \times (-1)^n
+		\left|
+		\begin{array}{cccc}
+			0       & 0       & \cdots & 2 		\\
+			\vdots  & \vdots  &        & \vdots	\\
+			1       & 2       & \cdots & 0      \\
+			2       & 1       & \cdots & 0      \\
+		\end{array}
+		\right| \\
+		&= (-1)^{n+1} \times 2D_{n-1} + D_{n-2}
+	\end{align*}
+	设
+	$$
+	D_n + a D_{n-1} = b(D_{n-1} + a D_{n-2})
+	$$
+	即
+	$$
+	D_n = (b - a)D_{n-1} + ab D_{n-2} = (-1)^{n+1} \times 2D_{n-1} + D_{n-2}
+	$$
+	从而
+	$
+	\begin{cases}
+		b - a = (-1)^{n+1} \times 2 \\
+		ab = 1
+	\end{cases}
+	$
+	，得
+	$
+	\begin{cases}
+		a = (-1)^{n} \\
+		b = (-1)^{n+1}
+	\end{cases}
+	$
+	，结合$D_1=2,D_2 = \left|
+	\begin{array}{cc}
+		1 & 2 \\
+		2 & 1 \\
+	\end{array}
+	\right|
+	= -3$
+	\begin{align*}
+		D_n + (-1)^{n} D_{n-1} &= (-1)^{n+1}(D_{n-1} + (-1)^{n} D_{n-2}) \\
+		&= (-1)^{\sum_{k=4}^{n+1}k}(D_2 + (-1)^3 D_1) \\
+		&= (-1)^{\frac{(n+5)(n-2)}{2}}(D_2 - D_1) \\
+		&= (-1)^{\frac{n^2 + 3n - 10}{2}}(-5) \\
+		&= (-1)^{\frac{n(n+1)}{2}}5 \\
+	\end{align*}
+	对$n$奇偶分类即可。
+\end{solution}
+
+\begin{exercise}
+	计算行列式$D_{n} = 
+	\left|
+	\begin{array}{cccc}
+		\alpha + \beta	& \alpha\beta	&     		&					\\
+	  	1				& \ddots		& \ddots	&					\\
+	  	    			& \ddots		& \ddots	& \alpha\beta		\\
+	  	    			&    			& 1  		& \alpha + \beta	\\
+	\end{array}
+	\right|
+	.
+	$
+\end{exercise}
+
+\begin{exercise}
+	计算行列式$D_{2n} = 
+	\left|
+	\begin{array}{cccccc}
+		a   &    										&     	&   & 											& b	\\
+	  		& \ddots   									&     	&   & \begin{rotate}{90}$\ddots$\end{rotate}	&   \\
+	  	    &   										& a		& b &											&	\\
+	  	    &    										& b  	& a &											&	\\
+		    & \begin{rotate}{90}$\ddots$\end{rotate}	&    	&   & \ddots									&	\\
+		b   &    										&    	&   &											& a	\\
+	\end{array}
+	\right|
+	.
+	$
+\end{exercise}
+
+\begin{exercise}
+	计算行列式$D_{n+1} = 
+	\left|
+	\begin{array}{cccccc}
+		a_0 	& a_1		& a_2 		& \cdots	& a_{n-1}	& a_n		\\
+	  	-1		& x			& 0    		& \cdots	& 0			& 0  		\\
+	  	0		& -1		& x			& \cdots	& 0			& 0			\\
+	  	\vdots	& \vdots 	& \vdots  	&			& \vdots	& \vdots 	\\
+		0   	& 0			& 0			& \cdots	& -1		& x			\\
+	\end{array}
+	\right|
+	.
+	$
+\end{exercise}
+
+\subsection{Vandemonde}
+
+$$
+\left|
+\begin{array}{ccccc}
+    1         & 1         & \cdots & 1         \\
+    x_1       & x_2       & \cdots & x_n       \\
+    x_1^2     & x_2^2     & \cdots & x_n^2     \\
+    \vdots    & \vdots    &        & \vdots    \\
+    x_1^{n-2} & x_2^{n-2} & \cdots & x_n^{n-2} \\
+    x_1^{n-1} & x_2^{n-1} & \cdots & x_n^{n-1} \\
+\end{array}
+\right|
+=
+\prod_{1 \le j < i \le n}(x_i - x_j)
+$$
+\begin{itemize}
+    \item $j < i$而非$j \le i$
+    \item $x_i - x_j$而非$x_j - x_i$
+\end{itemize}
+
+\begin{example}
+  (2015W-2-(1)) \\
+  (1) 计算$D_{n+1} = 
+  \left|
+    \begin{array}{cccccc}
+        1         & 1         & \cdots & 1          & 1       \\
+        x_1       & x_2       & \cdots & x_n        & x       \\
+        x_1^2     & x_2^2     & \cdots & x_n^2      & x^2     \\
+        \vdots    & \vdots    &        & \vdots     & \vdots  \\
+        x_1^{n-2} & x_2^{n-2} & \cdots & x_n^{n-2}  & x^{n-2} \\
+        x_1^{n-1} & x_2^{n-1} & \cdots & x_n^{n-1}  & x^{n-1} \\
+        x_1^n     & x_2^n     & \cdots & x_n^n      & x^n     \\
+    \end{array}
+  \right|
+  .
+  $
+\end{example}
+
+\begin{solution}
+    \ \\
+    (1) $D_{n+1} = \prod_{1 \le j < i \le n}(x_i - x_j) \prod_{i=1}^n(x - x_i)$
+\end{solution}
+
+\subsection{秩一修正型}
+
+对于可逆的方阵$A$，
+$$
+\left|A + \alpha\beta^\mathrm{T}\right| = (1+\beta^\mathrm{T}A^{-1}\alpha)\left|A\right|
+$$
+\begin{proof}
+    注意到
+	$$
+	\left|
+    \begin{array}{cc}
+        A + \alpha\beta^\mathrm{T}	& 0	\\
+        -\beta^\mathrm{T}       	& 1	\\
+    \end{array}
+  	\right|
+	=
+	\left|
+    \begin{array}{cc}
+        I	& -\alpha	\\
+        0	& 1			\\
+    \end{array}
+  	\right|
+	\left|
+    \begin{array}{cc}
+        A					& \alpha	\\
+        -\beta^\mathrm{T}	& 1			\\
+    \end{array}
+  	\right|
+	=
+	\left|
+    \begin{array}{cc}
+        I						& \alpha	\\
+        \beta^\mathrm{T} A^{-1}	& 1			\\
+    \end{array}
+  	\right|
+	\left|
+    \begin{array}{cc}
+        A					& \alpha	\\
+        -\beta^\mathrm{T}	& 1			\\
+    \end{array}
+  	\right|
+	=
+	\left|
+    \begin{array}{cc}
+        A	& \alpha							\\
+        0	& 1+\beta^\mathrm{T}A^{-1}\alpha	\\
+    \end{array}
+  	\right|
+	$$
+\end{proof}
+
+\begin{exercise}
+    计算$n$阶行列式
+	$$
+	D_n = 
+    \left|
+    \begin{array}{ccccc}
+        a_1 + x_1	& a_2		& \cdots	& a_n		\\
+        a_1   		& a_2 + x_2 & \cdots	& a_n		\\
+        \vdots		& \vdots	& 			& \vdots	\\
+        a_1   		& a_2		& \cdots	& a_n + x_n \\
+    \end{array}
+    \right|
+    ,$$
+    其中$x_i \neq 0,i = 1, 2, \dots, n.$
+\end{exercise}
+
+\section{余子式与代数余子式之和类型}
+
+\begin{itemize}
+    \item $M_{ij} = (-1)^{i+j}A_{ij}$
+    \item 
+    \begin{align*}
+        D &= \sum_{i = 1}^n a_{ij}A_{ij},\forall j = 1,2,\dots,n \\
+        &= \sum_{j = 1}^n a_{ij}A_{ij},\forall i = 1,2,\dots,n
+    \end{align*}
+    \item \begin{align*}
+        0 &= \sum_{i = 1}^n a_{ij_0}A_{ij},\forall j = 1,2,\dots,n,j \neq j_0 \\
+        &= \sum_{j = 1}^n a_{i_0j}A_{ij},\forall i = 1,2,\dots,n,i \neq i_0
+    \end{align*}
+\end{itemize}
+
+\begin{example}
+  (2019S-1-1) 计算$
+  \left|
+    \begin{array}{cccc}
+        2   & 3   & 4   & 5 \\
+        -1  & 0   & 0   & 0 \\
+        2   & -2  & 0   & 0 \\
+        0   & 3   & -3  & 0 \\
+    \end{array}
+  \right|
+  $
+  的第一行所有元素的代数余子式之和。
+\end{example}
+
+\begin{solution}
+    \begin{align*}
+        A_{11} + A_{12} + A_{13} + A_{14} &= 
+        \left|
+        \begin{array}{cccc}
+            1   & 1   & 1   & 1 \\
+            -1  & 0   & 0   & 0 \\
+            2   & -2  & 0   & 0 \\
+            0   & 3   & -3  & 0 \\
+        \end{array}
+        \right| \\
+        &= 6
+    \end{align*}
+\end{solution}
+
+\begin{exercise}
+    (2021S-1-1) 计算$A_{11} + M_{12} - M_{13}$，其中$D = 
+    \left|
+    \begin{array}{ccccc}
+        2   & 1 & 1 & 1 & 1 \\
+        1   & 2 & 1 & 1 & 1 \\
+        1   & 1 & 2 & 1 & 1 \\
+        1   & 1 & 1 & 2 & 1 \\
+        1   & 1 & 1 & 1 & 2 \\
+    \end{array}
+    \right|
+    $
+    ，$A_{ij}$是元素$a_{ij}$的代数余子式，$M_{ij}$是元素$a_{ij}$的余子式。
+\end{exercise}
+
+\begin{exercise}
+    设行列式
+    $
+    D=
+    \left|
+        \begin{array}{cccc}
+            2 & 0 & -1 & 1 \\ 
+            3 & 1 & 0 & 1 \\ 
+            4 & 1 & 1 & 0 \\ 
+            5 & -1 & 0 & a
+        \end{array}
+    \right|
+    $
+    ，$A_{ij}$表示元素$a_{ij}(i, j=1,2,3,4)$的代数余子式。若$A_{11}-A_{21}+A_{41}=4$，求$a$。
+\end{exercise}
+
+\section{分块行列式计算}
+
+\begin{itemize}
+    \item 
+    $ 
+    \left|
+    \begin{array}{cc}
+        A   & O \\
+        C   & D \\
+    \end{array}
+    \right|
+    =
+    \left|
+    \begin{array}{cc}
+        A   & B \\
+        O   & D \\
+    \end{array}
+    \right|
+    = \left|A\right| \left|D\right|
+    $
+\end{itemize}
+
+\begin{exercise}
+    设$A$是$m$阶矩阵，$B$是$n$阶矩阵，且$\left|A\right|=a$，$\left|B\right|=b$，求
+    $
+    \left|
+    \begin{array}{cc}
+        O   & A \\
+        B   & O \\
+    \end{array}
+	\right|
+	.
+    $
+\end{exercise}
+
+\section{多项式行列式计算}
+关注各幂次前系数。
+
+\begin{example}
+    (2015W-2-(2)) \\
+    (1) 计算$D_{n+1} = 
+    \left|
+    \begin{array}{ccccc}
+        1         & 1         & \cdots & 1          & 1       \\
+        x_1       & x_2       & \cdots & x_n        & x       \\
+        x_1^2     & x_2^2     & \cdots & x_n^2      & x^2     \\
+        \vdots    & \vdots    &        & \vdots     & \vdots  \\
+        x_1^{n-2} & x_2^{n-2} & \cdots & x_n^{n-2}  & x^{n-2} \\
+        x_1^{n-1} & x_2^{n-1} & \cdots & x_n^{n-1}  & x^{n-1} \\
+        x_1^n     & x_2^n     & \cdots & x_n^n      & x^n     \\
+    \end{array}
+    \right|
+	.
+    $
+    \\
+    (2) 由(1)计算$C_n = 
+    \left|
+    \begin{array}{cccc}
+        1         & 1         & \cdots & 1          \\
+        x_1       & x_2       & \cdots & x_n        \\
+        x_1^2     & x_2^2     & \cdots & x_n^2      \\
+        \vdots    & \vdots    &        & \vdots     \\
+        x_1^{n-2} & x_2^{n-2} & \cdots & x_n^{n-2}  \\
+        x_1^n     & x_2^n     & \cdots & x_n^n      \\
+    \end{array}
+    \right|
+	.
+    $
+\end{example}
+
+\begin{solution}
+    \ \\
+    (2) 注意到$-C_n$为$D_{n+1}$的$x^{n-1}$项前系数，由Vieta定理，$C_n = \prod_{1 \le j < i \le n}(x_i - x_j) \sum_{i=1}^n x_i$
+\end{solution}
+
+\begin{exercise}
+    (2019S-4改) 计算$f'(\pi)$与$f''(\pi)$，此处
+    $$
+    f(x) =
+    \left|
+    \begin{array}{ccc}
+        a_1 & b_1 & a_1 x^2 + b_1 x + c_1 \\
+        a_2 & b_2 & a_2 x^2 + b_2 x + c_2 \\
+        a_3 & b_3 & a_3 x^2 + b_3 x + c_3 \\
+    \end{array}
+    \right|
+	.
+    $$
+\end{exercise}
+
+\begin{exercise}
+    分析不恒为零的函数$f(x)=
+    \left|
+    \begin{array}{ccc}
+        a_1 + x & b_1 + x & c_1 + x \\
+        a_2 + x & b_2 + x & c_2 + x \\
+        a_3 + x & b_3 + x & c_3 + x \\
+    \end{array}
+    \right|
+    $
+    的零点数量情况。
+\end{exercise}
+
+\begin{exercise}
+    设$f(x)=
+    \left|
+    \begin{array}{ccccc}
+        x + 1   & 2         & 3         & \cdots     & n         \\
+        1       & x + 2     & 3         & \cdots     & n         \\
+        1       & 2         & x + 3     & \cdots     & n         \\
+        \vdots  & \vdots    & \vdots    &            & \vdots    \\
+        1       & 2         & 3         & \cdots     & x + n     \\
+    \end{array}
+    \right|
+    $
+    ，求$f^{(n-1)}(0)$。
+\end{exercise}
+
+\chapter{矩阵基础性质、计算与初等变换}
+
+\begin{introduction}[需要熟悉的知识点]
+	\item 手算矩阵乘法
+	\item 矩阵的逆、伴随、转置定义及性质
+	\item 手算求逆，手算求伴随
+	\item 矩阵的初等变换、初等矩阵，初等变换的矩阵表示，相抵关系，计算具体矩阵的秩，解线性方程组
+	\item 分块矩阵处理与矩阵分块，简单矩阵分解
+\end{introduction}
+
+\section{基本性质与计算型}
+
+\begin{itemize}
+	\item $AB = 
+        \left[
+        \begin{matrix}
+            \alpha_1^\mathrm{T} \\
+            \alpha_2^\mathrm{T} \\
+            \vdots \\
+            \alpha_s^\mathrm{T} \\
+        \end{matrix}
+        \right]_{s \times n}
+        [\beta_1,\beta_2,\cdots,\beta_m]_{n \times m}
+        =
+        \left[
+        \begin{matrix}
+            \alpha_1^\mathrm{T} \beta_1 & \alpha_1^\mathrm{T} \beta_2 & \cdots & \alpha_1^\mathrm{T} \beta_m \\
+            \alpha_2^\mathrm{T} \beta_1 & \alpha_1^\mathrm{T} \beta_2 & \cdots & \alpha_1^\mathrm{T} \beta_m \\
+            \vdots & \vdots & & \vdots \\
+            \alpha_s^\mathrm{T} \beta_1 & \alpha_s^\mathrm{T} \beta_2 & \cdots & \alpha_s^\mathrm{T} \beta_m \\
+        \end{matrix}
+        \right]_{s \times m}
+        $
+	\item $A A^{-1} = A^{-1} A = I$，逆如果存在是唯一的
+	\begin{itemize}
+        \item $(A^{-1})^{-1} = A$
+        \item $\left|A^{-1}\right| =  \left|A\right|^{-1}$
+        \item 3阶及以下矩阵算逆用伴随，3阶以上矩阵算逆用初等行变换
+    \end{itemize}
+	\item $A A^* = A^* A = \left|A\right| I$，伴随是唯一的
+	\begin{itemize}
+        \item 一般没有$(A^*)^{*} = A$
+        \item $\left|A^*\right| = \left|A\right|^{n-1}$
+        \item $A^*$的$(i,j)$元是$A_{ji}$而非$A_{ij}$
+    \end{itemize}
+    \item $A^{-1} = \dfrac{1}{\left|A\right|} A^*$
+    \begin{itemize}
+        \item 看到逆和伴随，优先考虑乘一个原矩阵化简
+        \item 最后不要忘记去除乘原矩阵的影响
+    \end{itemize}
+    \item 转置是唯一的
+    \begin{itemize}
+        \item $(A^\mathrm{T})^\mathrm{T} = A$
+        \item $\left|A^\mathrm{T}\right| = \left|A\right|$
+    \end{itemize}
+    \item 初等行（列）变换等价于把对应的初等矩阵左（右）乘原矩阵
+    \item 初等变换不改变秩，但可能改变行列式
+\end{itemize}
+
+\begin{example}
+    (2015W-5) 一个方阵$A$称为幂零的，如果存在正整数$N$使得$A^N=0$.设A为幂零的，证明：\\
+    (1) $B = a_1 A + a_2 A^2 + \dots + a_m A^m$也是幂零的.\\
+    (2) 若$a_0 \neq 0$，则$C = a_0 E + a_1 A + a_2 A^2 + \dots + a_m A^m$是可逆矩阵，并利用$B$来表示$C^{-1}$.
+\end{example}
+
+\begin{proof}
+    (1) 直接验证$B^N = O$，从而幂零。\\
+    (2) 假设我们已经知道了$C$可逆，$C^{-1} = (a_0 E + B)^{-1}$，完全形式化地处理矩阵的逆。
+    \begin{align*}
+        (a_0 E + B)^{-1} &= \dfrac{E}{a_0 E + B} \\
+        &= \dfrac{1}{a_0} \dfrac{E}{E + \dfrac{1}{a_0} B} \\
+        &= \dfrac{1}{a_0} \sum_{k=0}^{\infty} \left(-\dfrac{1}{a_0} B\right)^k \\
+        &= \dfrac{1}{a_0} \sum_{k=0}^{N-1} \left(-\dfrac{1}{a_0} B\right)^k
+    \end{align*}
+    这表明如果$C$可逆，那么$C^{-1} = \dfrac{1}{a_0} \sum_{k=0}^{N-1} \left(-\dfrac{1}{a_0} B\right)^k$，那么只需验证$C \dfrac{1}{a_0} \sum_{k=0}^{N-1} \left(-\dfrac{1}{a_0} B\right)^k = E$：
+    \begin{align*}
+        C \dfrac{1}{a_0} \sum_{k=0}^{N-1} \left(-\dfrac{1}{a_0} B\right)^k &= \dfrac{1}{a_0}  (a_0 E + B) \sum_{k=0}^{N-1} \left(-\dfrac{1}{a_0} B\right)^k \\
+        &= \sum_{k=0}^{N-1} \left(-\dfrac{1}{a_0} B\right)^k - \sum_{k=1}^{N} \left(-\dfrac{1}{a_0} B\right)^k \\
+        &= \sum_{k=0}^{N-1} \left(-\dfrac{1}{a_0} B\right)^k - \sum_{k=1}^{N-1} \left(-\dfrac{1}{a_0} B\right)^k \\
+        &= E
+    \end{align*}
+    上面的过程请在草稿纸上完成。解题过程如下：\\
+    断言：$C$可逆，并且$C^{-1} = \dfrac{1}{a_0} \sum_{k=0}^{N-1} \left(-\dfrac{1}{a_0} B\right)^k$。\\
+    事实上，
+    \begin{align*}
+        C \dfrac{1}{a_0} \sum_{k=0}^{N-1} \left(-\dfrac{1}{a_0} B\right)^k &= \dfrac{1}{a_0}  (a_0 E + B) \sum_{k=0}^{N-1} \left(-\dfrac{1}{a_0} B\right)^k \\
+        &= \sum_{k=0}^{N-1} \left(-\dfrac{1}{a_0} B\right)^k - \sum_{k=1}^{N} \left(-\dfrac{1}{a_0} B\right)^k \\
+        &= \sum_{k=0}^{N-1} \left(-\dfrac{1}{a_0} B\right)^k - \sum_{k=1}^{N-1} \left(-\dfrac{1}{a_0} B\right)^k \\
+        &= E
+    \end{align*}
+\end{proof}
+
+\begin{exercise}
+    (2015W-1-3) 设
+    $
+    A + B =
+    \left[
+    \begin{matrix}
+        1 & 1 \\
+        2 & 4 \\
+    \end{matrix}
+    \right]
+    , A - B =
+    \left[
+    \begin{matrix}
+        3 & 5 \\
+        0 & 2 \\
+    \end{matrix}
+    \right]
+    ,$
+    求$A^2 - B^2$.
+\end{exercise}
+
+\begin{exercise}
+    (2017S-1-1) 设$A$为3阶方阵，$\left|A\right| = \dfrac{1}{2}$，求$\left|(3 A)^{-1} - 2 A^*\right|$.
+\end{exercise}
+
+\begin{exercise}
+    (2017S-1-4) 已知
+    $
+    A = 
+    \left[
+    \begin{matrix}
+        -5 & 2 \\
+        -12 & 5 \\
+    \end{matrix}
+    \right]
+    ,
+    P = 
+    \left[
+    \begin{matrix}
+        1 & 2 \\
+        3 & 4 \\
+    \end{matrix}
+    \right]
+    $，求$P^{-1}AP$和$A^{-3} - A$.
+\end{exercise}
+
+\begin{exercise}
+    (2017S-2) 若方阵满足$X^2=X$，则称$X$是幂等的。设$A$和$B$是同阶的幂等方阵，证明：$A+B$是幂等的当且仅当$AB=BA=O$。
+\end{exercise}
+
+\begin{exercise}
+    (2018W-1-2) 设
+    $
+    A = 
+    \left[
+    \begin{matrix}
+        0 & 1 &         &           &       \\
+          & 0 & 2       &           &       \\
+          &   & \ddots  & \ddots    &       \\
+          &   &         & 0         & n-1   \\
+        n &   &         &           & 0     \\
+    \end{matrix}
+    \right],
+    B = 
+    \left[
+    \begin{matrix}
+        2 & 1 \\
+        5 & 3 \\
+    \end{matrix}
+    \right],
+    C = 
+    \left[
+    \begin{matrix}
+        A & O \\
+        O & B \\
+    \end{matrix}
+    \right]
+    $，其中$n \ge 2$，求$C^{-1}$.
+\end{exercise}
+
+\begin{exercise}
+    (2018W-1-3) 设$A \in \mathbb{R}^{3 \times 3}$，$\left|A\right| \neq 0$，且$A_{ij} = 2 a_{ij}, i, j = 1,2,3$，其中$A_{ij}$为$a_{ij}$的代数余子式，求$\left| A^* \right|$.
+\end{exercise}
+
+\begin{exercise}
+    (2019S-1-3) 已知4阶方阵$A$的伴随矩阵$A^* = 
+    \left[
+    \begin{matrix}
+    0 & 0 & 3 & 2 \\
+    0 & 0 & 0 & 3 \\
+    2 & 1 & 0 & 0 \\
+    1 & 2 & 0 & 0 \\
+    \end{matrix}
+    \right]
+    $，求$A$.
+\end{exercise}
+
+\begin{exercise}
+    (2019W-1-3) 已知$A^{-1} = 
+    \left[
+    \begin{matrix}
+        2 & 1 & 4 \\
+        1 & -2 & 3 \\
+        -2 & 1 & -6 \\
+    \end{matrix}
+    \right]
+    $，求$(E+A)^{-1}$.
+\end{exercise}
+
+\begin{exercise}
+    (2019W-3) 设$n$阶方阵满足$(A^*)^* = O$，证明$\left|A\right| = 0$.
+\end{exercise}
+
+\begin{exercise}
+    (2021S-1-4) 计算$(A^*)^*$，其中$A = 
+    \left[
+    \begin{matrix}
+        2 & 1 & 1 \\
+        1 & 2 & 1 \\
+        1 & 1 & 2 \\
+    \end{matrix}
+    \right]
+    $.
+\end{exercise}
+
+\begin{exercise}
+    (2021S-5(1)) 设$A = (\alpha_1,\alpha_2,\dots,\alpha_n),B = A^{-1} = 
+    \left[
+    \begin{matrix}
+        \beta_1^\mathrm{T} \\
+        \beta_2^\mathrm{T} \\
+        \vdots \\
+        \beta_n^\mathrm{T} \\
+    \end{matrix}
+    \right]
+    , C = \sum_{i=1}^k \alpha_i \beta_i^\mathrm{T} \quad (k<n)
+    $. \\
+    (1) 证明：$C^2 = C$.
+\end{exercise}
+
+\section{初等变换计算型}
+
+\begin{itemize}
+    \item 计算具体矩阵的秩
+    \item 求解线性方程组
+    \item 求解矩阵方程：$AX=B \iff A[x_1,x_2,\dots,x_n] = [\beta_1,\beta_2,\dots,\beta_n] \iff Ax_k = \beta_k,k=1,2,\dots,n$
+\end{itemize}
+解题方法相当统一且简单：对矩阵作初等行变换直至变为行阶梯型。
+\textbf{多加练习！不要跳步！没有技巧！}
+
+\begin{example}
+    (2017S-4) 解带参数方程组
+    $$
+    \begin{cases}
+        x_1 + (\lambda^2 + 1) x_2 + 2 x_3 = \lambda \\
+        \lambda x_1 + \lambda x_2 + (2 \lambda + 1) x_3 = 0 \\
+        x_1 + (2 \lambda + 1) x_2 + 2 x_3 = 2
+    \end{cases}
+    .
+    $$
+\end{example}
+
+\begin{exercise}
+    (2015W-1-2) 求$p$使得矩阵$
+    A=
+    \left[
+    \begin{matrix}
+        p & 4 & 10 & 1 \\
+        1 & 7 & 15 & 3 \\
+        2 & 2 & 0 & 3 \\
+    \end{matrix}
+    \right]
+    $
+    的秩$r(A)$最小，并求$r(A)$.
+\end{exercise}
+
+\begin{exercise}
+    (2015W-4) 求过点$(-2,0),(-1,1),(1,-3),(t,1)$的三次多项式函数$y = a_3 x^3 + a_2 x^2 + a_1 x + a_0$，其中$t$为参数。
+\end{exercise}
+
+\begin{exercise}
+    (2016W-5) 设$A = 
+    \left[
+    \begin{matrix}
+        5 & 2 & 4 \\
+        2 & 5 & -11 \\
+        2 & 3 & -5 \\
+    \end{matrix}
+    \right]
+    $. \\
+    (1) 解方程组$A x = 0$. \\
+    (2) 求满足$A^2 x = 0$但不满足$A x = 0$的$x$的集合. \\
+\end{exercise}
+
+\begin{exercise}
+    (2017S-6) 设$A$和$X$为$n$阶方阵，且满足$AX = A + 2X$. \\
+    (1) 证明：$AX = XA$. \\
+    (2) 若$A = 
+    \left[
+    \begin{matrix}
+        4 & 2 & 3 \\
+        1 & 1 & 0 \\
+        -1 & 2 & 3 \\
+    \end{matrix}
+    \right]
+    $，求解矩阵方程$AX = A + 2X$.
+\end{exercise}
+
+\begin{exercise}
+    (2018W-1-1) 设$A=
+    \left[
+    \begin{matrix}
+        1 & 2 & 1 \\
+        1 & 1 & 0 \\
+        2 & 1 & -\lambda \\
+    \end{matrix}
+    \right]
+    $
+    经过多次初等行变换和列变换得到$B=
+    \left[
+    \begin{matrix}
+        -5 & 17 & 6 \\
+        -7 & 0 & 5 \\
+        13 & 9 & -8 \\
+    \end{matrix}
+    \right]
+    $
+\end{exercise}
+
+\begin{exercise}
+    (2019S-1-2) 计算3阶方阵$X$使其满足$
+    \left[
+    \begin{matrix}
+        1 & 1 & 1 \\
+        1 & -1 & 0 \\
+        0 & 0 & -1 \\
+    \end{matrix}
+    \right]
+    X
+    \left[
+    \begin{matrix}
+        1 & 1 & 1 \\
+        1 & -1 & 0 \\
+        0 & 0 & 1 \\
+    \end{matrix}
+    \right]
+    =
+    \left[
+    \begin{matrix}
+        1 & 1 & 0 \\
+        1 & -1 & 0 \\
+        0 & 2 & 2 \\
+    \end{matrix}
+    \right]
+    $
+\end{exercise}
+
+\begin{exercise}
+    (2019S-5) 给定矩阵$A = 
+    \left[
+    \begin{matrix}
+        1 & -1 & -3 & -2 & -3 \\
+        1 & 3 & 8 & -3 & 9 \\
+        3 & 1 & 2 & -7 & 3 \\
+    \end{matrix}
+    \right]
+    $ \\
+    (1) 计算$r(A)$. \\
+    (2) 计算线性方程组$Ax = 0$的基本解组. \\
+    (3) 若$\eta = (1, -1, 0, 0, 2)^\mathrm{T}$是$Ax = b$的解，确定$b$并求$Ax = b$的通解.
+\end{exercise}
+
+\begin{exercise}
+    (2019W-2) 设$A=
+    \left[
+    \begin{matrix}
+        1 & -3 & 5 \\
+        -2 & 1 & -3 \\
+        -1 & -7 & 9 \\
+    \end{matrix}
+    \right]
+    ,\beta=
+    \left[
+    \begin{matrix}
+        4 \\
+        -3 \\
+        6 \\
+    \end{matrix}
+    \right]
+    ,\gamma=
+    \left[
+    \begin{matrix}
+        3 \\
+        s \\
+        2.4 \\
+    \end{matrix}
+    \right]
+    $，其中$s$为参数。\\
+    (1) 解方程组$Ax=\beta$. \\
+    (2) 令$B=
+    \left[
+    \begin{matrix}
+        A & \beta \\
+        \gamma^\mathrm{T} & 3 \\
+    \end{matrix}
+    \right]
+    $，解方程组$By = 0$.
+\end{exercise}
+
+\begin{exercise}
+    (2020S-1-2) 设$A=
+    \left[
+    \begin{matrix}
+        1 & -2 & 1 \\
+        2 & 1 & 3 \\
+        1 & -1 & 1 \\
+    \end{matrix}
+    \right]
+    ,B=
+    \left[
+    \begin{matrix}
+        -6 & 8 \\
+        4 & 5 \\
+        2 & 2 \\
+    \end{matrix}
+    \right]
+    ,C=
+    \left[
+    \begin{matrix}
+        1 & 3 \\
+        2 & 2 \\
+        3 & 1 \\
+    \end{matrix}
+    \right]
+    $，求解矩阵方程$A(X - B) = C$.
+\end{exercise}
+
+\begin{exercise}
+    (2020S-2) 解方程组
+    $
+    \begin{cases}
+        2 x_1 + 3 x_2 - 5 x_3 + 4 x_4 = -11 \\
+        x_1 + a x_2 + 2 x_3 - 7 x_4 = 7 \\
+        3 x_1 - x_2 - 2 x_3 - 5 x_4 = 0
+    \end{cases}
+    $.
+\end{exercise}
+
+\begin{exercise}
+    (2021S-1-5) 计算矩阵$X$使得$
+    \left[
+    \begin{matrix}
+        2 & 1 & 0 \\
+        1 & 2 & 1 \\
+        0 & 1 & 2 \\
+    \end{matrix}
+    \right]
+    X
+    \left[
+    \begin{matrix}
+        1 & -1 & 0 & 0 \\
+        0 & 1 & -1 & 0 \\
+        0 & 0 & 1 & -1 \\
+        0 & 0 & 0 & 1 \\
+    \end{matrix}
+    \right]
+    =
+    \left[
+    \begin{matrix}
+        1 & 0 & 0 & 0 \\
+        -1 & 1 & 0 & 0 \\
+        0 & -1 & 1 & 0 \\
+    \end{matrix}
+    \right]
+    $.
+\end{exercise}
+
+\begin{exercise}
+    (2021S-5(2)) 设$A = (\alpha_1,\alpha_2,\dots,\alpha_n),B = A^{-1} = 
+    \left[
+    \begin{matrix}
+        \beta_1^\mathrm{T} \\
+        \beta_2^\mathrm{T} \\
+        \vdots \\
+        \beta_n^\mathrm{T} \\
+    \end{matrix}
+    \right]
+    , C = \sum_{i=1}^k \alpha_i \beta_i^\mathrm{T} \quad (k<n)
+    $. \\
+    (2) 写出$Cx = 0$的一个基础解系。
+\end{exercise}
+
+\section{矩阵分解型}
+
+\begin{itemize}
+    \item 求$A^n$
+    \begin{itemize}
+        \item 低秩矩阵将其分解为低维矩阵（向量）之积后利用结合律
+        \item 幂零矩阵，如$
+        \left[
+        \begin{matrix}
+            0 & 1 &         & \\
+              & 0 & \ddots &  \\
+              &   & \ddots & 1  \\
+              &   &         & 0 \\
+        \end{matrix}
+        \right]
+        $
+    \end{itemize}
+    \item 矩阵的每一列被写为向量组线性表出形式
+\end{itemize}
+
+\begin{example}
+    (2016W-1-1) 已知矩阵
+    $
+    A = 
+    \left[
+    \begin{matrix}
+        3 & 6 & -3 \\
+        -1 & -2 & 1 \\
+        2 & 4 & -2  \\
+    \end{matrix}
+    \right]
+    $，求$A^n$.
+\end{example}
+
+\begin{solution}
+    $
+    A = 
+    \left[
+    \begin{matrix}
+        3 \\
+        -1 \\
+        2 \\
+    \end{matrix}
+    \right]
+    \left[
+    \begin{matrix}
+        1 & 2 & -1 \\
+    \end{matrix}
+    \right]
+    = \alpha \beta^{\mathrm{T}}
+    $，当$n \ge 2$时，$A^n = \alpha (\beta^{\mathrm{T}} \alpha)^{n-1} \beta^{\mathrm{T}} = \alpha (-1)^{n-1} \beta^{\mathrm{T}} = (-1)^{n-1} \alpha \beta^{\mathrm{T}} = (-1)^{n-1} A$，故$A^n = (-1)^{n-1} A, n \ge 1$.
+\end{solution}
+
+\begin{exercise}
+    (2021S-1-2) 计算$A^{2021}$，其中$A =  
+    \left[
+    \begin{matrix}
+        -1 & 1 & -2 & -1 \\
+        1 & -1 & 2 & 1 \\
+        0 & 0 & 0 & 0 \\
+        2 & -2 & 4 & 2 \\
+    \end{matrix}
+    \right]
+    $.
+\end{exercise}
+
+\begin{example}
+    (2016W-1-2) 已知矩阵$A = (\alpha_1,\alpha_2,\alpha_3) \in \mathbb{R}^{3 \times 3}$，$\left|A\right|=3$，矩阵$B = (2 \alpha_1 - \alpha_2 + 2 \alpha_3, \alpha_1 - 3 \alpha_2 + \alpha_3, \alpha_1 + 2 \alpha_2 - \alpha_3)$，计算$\left|B\right|$.
+\end{example}
+
+\begin{solution}
+    $
+    \left|B\right| = \left|A\right|
+    \left|
+    \begin{matrix}
+        2 & 1 & 1 \\
+        -1 & -3 & 2 \\
+        2 & 1 & -1 \\
+    \end{matrix}
+    \right|
+    = 30.
+    $
+\end{solution}
+
+\begin{exercise}
+    (2019W-1-4) 设$A = (\alpha_1, \alpha_2, \alpha_3),B = (-3 \alpha_2 + \alpha_3, \alpha_1 - \alpha_2 + 2 \alpha_3, -2 \alpha_1 + \alpha_2 - \alpha_3), \left|B\right| = 16$，求$\left|A+B\right|$.
+\end{exercise}
+
+\chapter{矩阵的秩、向量线性相关性与线性方程组解的结构}
+
+\begin{introduction}[需要熟悉的知识点]
+    \item 线性相关，线性无关，线性表出，向量组等价，向量组的秩
+	\item 矩阵行秩、列秩，秩的行秩列秩定义，秩的子式定义
+	\item Sylvester秩不等式
+	\item 矩阵加法、乘法、组合对秩的影响
+	\item 线性方程组解的结构
+	\item 线性方程组无解、有解、有唯一解、有无穷多解条件
+	\item 维数定理
+\end{introduction}
+
+\section{秩的相关性质}
+
+\begin{itemize}
+    \item Sylvester秩不等式：$r(A) + r(B) - n \le r(AB) \le \min(r(A),r(B))$
+    \begin{itemize}
+        \item 当$AB = O$时，$r(A) + r(B) \le n$
+        \item 如果$A$为可逆方阵，$r(AB) = r(B)$，$B$为可逆方阵时同理
+    \end{itemize}
+    \item $r(A + B) \le r(A) + r(B)$
+    \item $r(A,B) \le r(A) + r(B), 
+        r\left(\left[
+            \begin{matrix}
+                A \\
+                B \\
+            \end{matrix}
+            \right]\right) \le r(A) + r(B)$
+    \item $r\left(\left[
+        \begin{matrix}
+            A & O \\
+            O & B \\
+        \end{matrix}
+        \right]\right) = r(A) + r(B)$
+\end{itemize}
+
+\begin{example}
+    (2015W-6) 若$n$阶方阵$A$满足$A^2=A$，则称$A$为幂等矩阵。设$A$为幂等矩阵，证明：\\
+    (1) $E - A$也为幂等矩阵。\\
+    (2) $r(A) + r(E - A) = n$.
+\end{example}
+
+\begin{proof}
+    (1) $(E - A)^2 = E - 2A + A^2 = E - 2A + A = E - A$. \\
+    (2) 注意到$A(E - A) = O$，由Sylvester秩不等式，$ n = r(A + E - A) \le r(A) + r(E - A) \le n$即得$r(A) + r(E - A) = n$.
+\end{proof}
+
+\begin{exercise}
+    (2017S-1-2) 设$A$为$n$阶方阵且满足$A^2 = -A$，证明：$r(A) + r(E + A) = n$.
+\end{exercise}
+
+\begin{exercise}
+    (2018W-1-4) 设$A = M N^\mathrm{T}$，其中$M,N \in \mathbb{R}^{n \times r}(r \le n)$，$\left|N^\mathrm{T} M\right| \neq 0$。证明：$r(A^2) = r(A)$。
+\end{exercise}
+
+\begin{exercise}
+    (2019S-1-4改) 对于$A = \{ \alpha_1,\alpha_2,\dots,\alpha_{100}\},B = \{\beta_1,\beta_2,\dots,\beta_{20}\}$，若$r(A) = 7$，给出$r(A \cup B)$的取值范围。
+\end{exercise}
+
+\begin{exercise}
+    (2019W-3) 设$n$阶方阵满足$(A^*)^* = O$，证明$\left|A\right| = 0$.
+\end{exercise}
+
+\begin{exercise}
+    (2020S-6) 设$A$为$n$阶方阵，$r(A) = n-1$，证明：$A^* = \alpha \beta^\mathrm{T}$，其中$\alpha,\beta$为$n$维列向量，且有$A \alpha = A^\mathrm{T} \beta = 0$。 
+\end{exercise}
+
+\section{线性方程组解的结构}
+
+\begin{itemize}
+    \item 抓住$r(A)$与$r(A | b)$
+\end{itemize}
+
+\begin{exercise}
+    (2019S-5) 设矩阵$A=
+    \left[
+    \begin{matrix}
+        1 & -1 & -3 & -2 & -3 \\
+        1 & 3 & 8 & -3 & 9 \\
+        3 & 1 & 2 & -7 & 3 \\
+    \end{matrix}
+    \right]
+    $.\\
+    (1) 计算$r(A)$。\\
+    (2) 计算线性方程组$Ax = 0$的基本解组。\\
+    (3) 假定$\eta = (1,-1,0,0,2)^\mathrm{T}$是$Ax=b$的解，确定$b$并计算$Ax=b$的通解。
+\end{exercise}
+
+\section{秩与线性方程组解结构的相互转化}
+
+\begin{itemize}
+    \item 维数定理：对于齐次线性方程组$Ax = 0$，$x \in \mathbb{R}^n$，若$r(A) = r$，方程的一个基础解系中有$n-r$个向量。
+\end{itemize}
+
+\begin{example}
+    (2016W-3) 设$A_1 x = b_1$和$A_2 x = b_2$是两个非齐次线性方程组，其中$A_1 \in \mathbb{R}^{m \times n}, A_2 \in \mathbb{R}^{k \times n}$.如果这两个方程组同解，证明$A_1$和$A_2$的行向量组等价。
+\end{example}
+
+\begin{proof}
+    $A_1 x = b_1,A_2 x = b_2,
+    \left[
+    \begin{matrix}
+        A_1 \\
+        A_2 \\
+    \end{matrix}
+    \right]x=
+    \left[
+    \begin{matrix}
+        b_1 \\
+        b_2 \\
+    \end{matrix}
+    \right]
+    $均同解，这表明$r(A_1) = r(A_2) = r\left(
+    \left[
+    \begin{matrix}
+        A_1 \\
+        A_2 \\
+    \end{matrix}
+    \right]
+    \right)
+    $，得证。
+\end{proof}
+
+\begin{example}
+    (2019S-7改, 2021S-4改) 设$A$为$m \times n$阶实矩阵，$b$为$m$维实向量。证明：\\
+    (1) $A^\mathrm{T} A x = 0$和$A x = 0$同解。\\
+    (2) $r(A) = r(A^\mathrm{T} A) = r(A A^\mathrm{T})$。\\
+    (3) $A^\mathrm{T} A x = A^\mathrm{T}b$恒有解。\\
+    (4) 如果$A x = b$有解，那么$A^\mathrm{T} A x = A^\mathrm{T} b$和$A x = b$同解。
+\end{example}
+
+\begin{proof}
+    (1) 显然当$x$是$Ax=0$的解时，$x$是$A^\mathrm{T} A x = 0$的解。反之，设$x$是$A^\mathrm{T} A x = 0$的解，那么$(A x)^\mathrm{T} A x = 0$，这表明$A x = 0$，得证。\\
+    (2) 由(1)，$r(A) = r(A^\mathrm{T} A)$。又$r(A) = r(A^\mathrm{T})$，$r(A^\mathrm{T} A) = r(A) = r(A^\mathrm{T}) = r((A^\mathrm{T})^\mathrm{T} A^\mathrm{T}) = r(A A^\mathrm{T})$ \\
+    (3) $r(A^\mathrm{T} A | A^\mathrm{T} b) = r(A^\mathrm{T}) = r(A^\mathrm{T} A)$ \\
+    (4) 显然当$x$是$Ax=b$的解时，$x$是$A^\mathrm{T} A x = A^\mathrm{T} b$的解。反之，设$x$是$A^\mathrm{T} A x = A^\mathrm{T} b$的解，$x_0$是$Ax=b$的解，由上，$x_0$是$A^\mathrm{T} A x = A^\mathrm{T} b$的解。下验证$Ax = b$成立，只需证明$Ax - b = 0$即可。\\
+    $A^\mathrm{T} (Ax - b) = A^\mathrm{T} A(x - x_0) = 0$，那么$(A(x - x_0))^\mathrm{T} A(x - x_0) = 0$，这表明$A(x - x_0) = 0,Ax = Ax_0 = b$，从而$x$是$Ax=b$的解，得证。
+\end{proof}
+
+\begin{remark}
+    上题结论请掌握，并熟悉证明过程。
+\end{remark}
+
+\begin{exercise}
+    (2015W-1-5) 若5元方程组$Ax=b,b \neq 0$有解$\xi_1=(1,1,1,1,1)^\mathrm{T},\xi_2=(1,2,3,4,5)^\mathrm{T},\xi_3=(1,0,-3,-2,-3)^\mathrm{T}$，且$r(A)=3$，求方程组的通解。
+\end{exercise}
+
+\begin{exercise}
+    (2016W-1-4) 设$A \in \mathbb{R}^{m \times n} (m>n)$，$r(A)=n$，证明:存在矩阵$P \in \mathbb{R}^{n \times m}$使得$PA = E_n$.
+\end{exercise}
+
+\begin{exercise}
+    (2016W-3改) 设$A_1 x = b_1$和$A_2 x = b_2$是两个非齐次线性方程组，其中$A_1 \in \mathbb{R}^{m \times n}, A_2 \in \mathbb{R}^{k \times n}$.如果这两个方程组同解，证明$[A_1 | b_1]$和$[A_2 | b_2]$的行向量组等价。
+\end{exercise}
+
+\begin{exercise}
+    (2017S-1-5) 设$n$阶方阵$A$的秩为$r<n$，证明存在秩为$n-r$的$n$阶方阵$B$使得$AB=O$.
+\end{exercise}
+
+\begin{exercise}
+    (2017S-3) 证明方程组
+    $$
+    \begin{cases}
+        x_1 - x_2 &= a_1 \\
+        x_2 - x_3 &= a_2 \\
+        &\vdots \\
+        x_{n-1} - x_n &= a_{n-1} \\
+        x_n - x_1 &= a_n \\
+    \end{cases}
+    $$
+    有解当且仅当$\sum_{i=1}^n a_i = 0$，并在有解的情况下，求方程组的解集。
+\end{exercise}
+
+\begin{exercise}
+    (2019S-1-5) 已知线性方程组$Ax=b$的三个特解为$\alpha_1 = (1,-2,3)^\mathrm{T},\alpha_2 = (0,-1,-2)^\mathrm{T},\alpha_3 = (-4,2,1)^\mathrm{T},r(A) = 1$，写出$Ax=b$的通解。
+\end{exercise}
+
+\begin{exercise}
+    (2019W-1-5) 设$A,B$为$m \times n$阶矩阵，证明$r(A A^\mathrm{T} + B B^\mathrm{T}) = r(A,B)$.
+\end{exercise}
+
+\begin{exercise}
+    (2021S-1-6) 设$A$为3阶方阵，$r(A)=1$，$\alpha_1,\alpha_2,\alpha_3$是$Ax=b$的三个解向量，$\alpha_1 + \alpha_2 = (1,-1,3)^\mathrm{T},\alpha_2 + \alpha_3 = (0,-2,1)^\mathrm{T},\alpha_3 + \alpha_1 = (3,0,4)^\mathrm{T}$，求$Ax=b$的通解。
+\end{exercise}
+
+\begin{exercise}
+    (2021S-6) 设$A$为$m \times n$阶矩阵，$B$为$n \times k$阶矩阵，$AB=O$，$r(A) + r(B) = n$，$B$与$C=(\gamma_1,\gamma_2,\dots,\gamma_k)$列等价，证明$\gamma_1,\gamma_2,\dots,\gamma_k$的极大线性无关组可以成为$Ax=0$的一个基础解系。
+\end{exercise}
+
+\section{向量线性相关性与线性方程组解的相互转化}
+
+\begin{exercise}
+    (2016W-2) 设$\alpha_1=
+    \left[
+    \begin{matrix}
+        3 \\
+        1 \\
+        2 \\
+        -1 \\
+    \end{matrix}
+    \right],\alpha_2=
+    \left[
+    \begin{matrix}
+        1 \\
+        -1 \\
+        4 \\
+        2 \\
+    \end{matrix}
+    \right],\alpha_3=
+    \left[
+    \begin{matrix}
+        7 \\
+        5 \\
+        -2 \\
+        -7 \\
+    \end{matrix}
+    \right],\alpha_4=
+    \left[
+    \begin{matrix}
+        5 \\
+        -1 \\
+        10 \\
+        3 \\
+    \end{matrix}
+    \right],\alpha_5=
+    \left[
+    \begin{matrix}
+        -1 \\
+        2 \\
+        1 \\
+        0 \\
+    \end{matrix}
+    \right]
+    $. \\
+    (1) 求$\alpha_1,\alpha_2,\alpha_3,\alpha_4,\alpha_5$的一个极大线性无关组，并用该极大线性无关组表出其他向量。\\
+    (2) 若有向量$\beta = (1,0,-1,-1)^\mathrm{T}$，向量组$\alpha_3,\alpha_4,\beta$是否与$\alpha_1,\alpha_3,\alpha_3,\alpha_4,\alpha_5$等价？
+\end{exercise}
+
+\begin{exercise}
+    (2018W-2) 设有向量组
+    $$
+    \alpha_1=
+    \left[
+    \begin{matrix}
+        2 \\
+        -2 \\
+        -1 \\
+        4 \\
+    \end{matrix}
+    \right],
+    \alpha_2=
+    \left[
+    \begin{matrix}
+        1 \\
+        -2 \\
+        0 \\
+        1 \\
+    \end{matrix}
+    \right],
+    \alpha_3=
+    \left[
+    \begin{matrix}
+        1 \\
+        -4 \\
+        1 \\
+        -1 \\
+    \end{matrix}
+    \right],
+    \alpha_4=
+    \left[
+    \begin{matrix}
+        1 \\
+        0 \\
+        2 \\
+        3 \\
+    \end{matrix}
+    \right],
+    \alpha_5=
+    \left[
+    \begin{matrix}
+        2 \\
+        1 \\
+        2 \\
+        7 \\
+    \end{matrix}
+    \right]
+    $$
+    (1) 求一个极大线性无关组，并用其表示其余向量。\\
+    (2) 找出在$e_1,e_2,e_3,e_4$中所有不能被向量组$\alpha_1,\alpha_2,\alpha_3,\alpha_4,\alpha_5$线性表出的向量。
+\end{exercise}
+
+\begin{exercise}
+    (2019W-4) 设向量组$A: \alpha_1=
+    \left[
+    \begin{matrix}
+        2 \\
+        4 \\
+        3 \\
+        1 \\
+    \end{matrix}
+    \right],\alpha_2=
+    \left[
+    \begin{matrix}
+        4 \\
+        8 \\
+        6 \\
+        2 \\
+    \end{matrix}
+    \right],\alpha_3=
+    \left[
+    \begin{matrix}
+        1 \\
+        3 \\
+        1 \\
+        2 \\
+    \end{matrix}
+    \right]
+    $
+    和$B: \beta_1=
+    \left[
+    \begin{matrix}
+        2 \\
+        4 \\
+        3 \\
+        1 \\
+    \end{matrix}
+    \right],\alpha_2=
+    \left[
+    \begin{matrix}
+        4 \\
+        8 \\
+        6 \\
+        2 \\
+    \end{matrix}
+    \right],\alpha_3=
+    \left[
+    \begin{matrix}
+        1 \\
+        3 \\
+        1 \\
+        2 \\
+    \end{matrix}
+    \right]
+    $. \\
+    (1) 分别求向量组$A$和$B$的一个极大线性无关组。\\
+    (2) 求向量$\gamma$使得向量组$\alpha_1,\alpha_2,\alpha_3,\gamma$和$\beta_1,\beta_2,\beta_3,\gamma$等价。
+\end{exercise}
+
+\begin{exercise}
+    (2020S-4) 设有向量组
+    $$
+    \alpha_1=
+    \left[
+    \begin{matrix}
+        1 \\
+        8 \\
+        -1 \\
+        4 \\
+    \end{matrix}
+    \right],
+    \alpha_2=
+    \left[
+    \begin{matrix}
+        3 \\
+        0 \\
+        -5 \\
+        4 \\
+    \end{matrix}
+    \right],
+    \alpha_3=
+    \left[
+    \begin{matrix}
+        0 \\
+        12 \\
+        1 \\
+        4 \\
+    \end{matrix}
+    \right],
+    \alpha_4=
+    \left[
+    \begin{matrix}
+        2 \\
+        6 \\
+        -2 \\
+        4 \\
+    \end{matrix}
+    \right],
+    \alpha_5=
+    \left[
+    \begin{matrix}
+        -2 \\
+        -4 \\
+        3 \\
+        -4 \\
+    \end{matrix}
+    \right]
+    $$
+    (1) 求一个极大线性无关组，并用其表示其余向量。\\
+    (2) 在$\alpha_1,\alpha_2,\alpha_3,\alpha_4,\alpha_5$中去除一个向量，使得去除后向量组的秩减小。
+\end{exercise}
+
+\end{document}

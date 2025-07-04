@@ -361,6 +361,26 @@ export const NOTES_CONFIG = [
                         file: 'assets/notes/Western Music/西方音乐通论.md'
                     }
                 ]
+            },
+            {
+                category: "线性代数一层次复习讲义",
+                notes: [
+                    {
+                        id: 'larl41-ch1',
+                        title: '行列式计算',
+                        file: 'assets/notes/Linear Algebra Review Lecture for the 1st layer/chapter1/ch1.md'
+                    },
+                    {
+                        id: 'larl41-ch2',
+                        title: '矩阵基础性质、计算与初等变换',
+                        file: 'assets/notes/Linear Algebra Review Lecture for the 1st layer/chapter2/ch2.md'
+                    },
+                    {
+                        id: 'larl41-ch3',
+                        title: '矩阵的秩、向量线性相关性与线性方程组解的结构',
+                        file: 'assets/notes/Linear Algebra Review Lecture for the 1st layer/chapter3/ch3.md'
+                    }
+                ]
             }
         ]
     }
