@@ -1,7 +1,7 @@
-import { NOTES_CONFIG } from './notes-config.js';
+import {NOTES_CONFIG} from './notes-config.js';
 
 // 页面加载完成后执行
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // 获取DOM元素
     const header = document.getElementById('header');
     const menuToggle = document.getElementById('menuToggle');
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     li.dataset.file = note.file;
                     li.dataset.category = category.category;
 
-                    li.addEventListener('click', function() {
+                    li.addEventListener('click', function () {
                         // 更新URL参数
                         const url = new URL(window.location.href);
                         url.searchParams.set('category', this.dataset.category);
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // 点击分类标题切换展开/折叠状态
-            categoryHeader.addEventListener('click', function() {
+            categoryHeader.addEventListener('click', function () {
                 const icon = this.querySelector('.category-icon');
                 const list = this.nextElementSibling;
 
@@ -66,6 +66,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     list.style.display = 'block';
                     icon.classList.remove('fa-chevron-down');
                     icon.classList.add('fa-chevron-up');
+
+                    // 检查该分类是否有说明文档
+                    if (category.description) {
+                        loadNote(category.description);
+                    }
                 } else {
                     list.style.display = 'none';
                     icon.classList.remove('fa-chevron-up');
@@ -171,12 +176,56 @@ document.addEventListener('DOMContentLoaded', function() {
                 noteContent.innerHTML = '';
                 noteContent.appendChild(container);
 
-                // 代码高亮
-                document.querySelectorAll('pre code').forEach((block) => {
-                    hljs.highlightElement(block);
+                // 渲染 Mermaid 图表
+                const mermaidBlocks = container.querySelectorAll('pre code.language-mermaid');
+                const mermaidPromises = [];
+
+                mermaidBlocks.forEach((block) => {
+                    const parent = block.parentNode;
+                    const graphDefinition = block.textContent;
+
+                    // 创建临时容器
+                    const tempDiv = document.createElement('div');
+                    tempDiv.className = 'mermaid-container';
+                    parent.parentNode.replaceChild(tempDiv, parent);
+
+                    // 渲染Mermaid并保存Promise
+                    const renderMermaid = () => {
+                        return mermaid.mermaidAPI.render(
+                            'mermaid-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9),
+                            graphDefinition
+                        )
+                            .then(svgCode => {
+                                tempDiv.innerHTML = svgCode.svg;
+                            })
+                            .catch(error => {
+                                if (error.message.includes('already registered')) {
+                                    // 重置 Mermaid 环境
+                                    mermaid.mermaidAPI.reset();
+                                    mermaid.mermaidAPI.initialize({
+                                        startOnLoad: false,
+                                        flowchart: { useMaxWidth: true, htmlLabels: true },
+                                        securityLevel: 'loose'
+                                    });
+                                    // 重新尝试渲染
+                                    return renderMermaid();
+                                }
+                                console.error('Mermaid渲染错误:', error);
+                                tempDiv.innerHTML = `<div class="mermaid-error">图表渲染错误: ${error.message}</div>`;
+                            });
+                    };
+
+                    mermaidPromises.push(renderMermaid());
                 });
 
-                // 渲染LaTeX公式（新增部分）
+                // 代码高亮
+                Promise.all(mermaidPromises).then(() => {
+                    // 代码高亮（排除mermaid代码块）
+                    container.querySelectorAll('pre code:not(.language-mermaid)').forEach((block) => {
+                        hljs.highlightElement(block);
+                    });
+                });
+                // 渲染LaTeX公式
                 renderMathInElement(container, {
                     delimiters: [
                         {left: '$$', right: '$$', display: true},
@@ -198,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 导航栏滚动效果
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
             header.style.padding = '10px 0';
@@ -209,7 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // 移动端菜单切换
-    menuToggle.addEventListener('click', function() {
+    menuToggle.addEventListener('click', function () {
         navLinks.classList.toggle('open');
         const icon = menuToggle.querySelector('i');
         if (icon.classList.contains('fa-bars')) {
@@ -223,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 导航链接点击关闭菜单（移动端）
     navLinksItems.forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function () {
             if (window.innerWidth <= 768) {
                 navLinks.classList.remove('open');
                 const icon = menuToggle.querySelector('i');
@@ -235,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 平滑滚动
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;

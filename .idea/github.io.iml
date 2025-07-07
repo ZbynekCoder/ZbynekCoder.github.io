@@ -12,5 +12,6 @@
     <orderEntry type="library" name="highlight.js" level="application" />
     <orderEntry type="library" name="marked" level="application" />
     <orderEntry type="library" name="katex" level="application" />
+    <orderEntry type="library" name="mermaid" level="application" />
   </component>
 </module>

@@ -151,7 +151,6 @@
     padding-left: 15px;
     margin-left: 0;
     color: #777;
-    font-style: italic;
 }
 
 .markdown-preview ul, .markdown-preview ol {
@@ -196,7 +195,7 @@
 .markdown-preview td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: left;
+    text-align: center;
 }
 
 .markdown-preview th {
@@ -250,6 +249,20 @@
     font-size: 0.9em;
     color: #6c757d;
     margin-top: 0.5em;
+}
+
+/* Mermaid图表样式 */
+pre.mermaid {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.mermaid svg {
+    max-width: 100%;
+    height: auto;
 }
 
 /* 响应式布局 */

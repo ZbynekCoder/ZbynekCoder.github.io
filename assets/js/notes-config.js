@@ -294,38 +294,38 @@ export const NOTES_CONFIG = [
             },
             {
                 id: 'uml',
-                title: '2.类图与UML',
-                file: 'assets/notes/OO-Starter/chapter2/2.类图与UML.md'
+                title: '2.UML与类图',
+                file: 'assets/notes/OO-Starter/chapter2/2.UML与类图.md'
             },
             {
                 id: 'encapsulation',
                 title: '3.封装',
-                file: 'assets/notes/OO-Starter/chapter3/3.封装.md'
+                file: 'todo'
             },
             {
                 id: 'inheritance',
                 title: '4.继承',
-                file: 'assets/notes/OO-Starter/chapter4/4.继承.md'
+                file: 'todo'
             },
             {
                 id: 'polymorphism',
                 title: '5.多态',
-                file: 'assets/notes/OO-Starter/chapter5/5.多态.md'
+                file: 'todo'
             },
             {
                 id: 'pattern',
                 title: '6.面向对象设计原则与简单设计模式',
-                file: 'assets/notes/OO-Starter/chapter6/6.面向对象设计原则与简单设计模式.md'
+                file: 'todo'
             },
             {
                 id: 'python-easy',
                 title: 'A1.简单Python语法',
-                file: 'assets/notes/OO-Starter/appendix1/A1.简单Python语法.md'
+                file: 'todo'
             },
             {
                 id: 'python-oop',
                 title: 'A2.Python-OOP',
-                file: 'assets/notes/OO-Starter/appendix2/A2.Python-OOP.md'
+                file: 'todo'
             }
         ]
     },
@@ -364,6 +364,7 @@ export const NOTES_CONFIG = [
             },
             {
                 category: "线性代数一层次复习讲义",
+                description: "assets/notes/Linear Algebra Review Lecture for the 1st layer/description.md",
                 notes: [
                     {
                         id: 'larl41-ch1',
@@ -379,6 +380,42 @@ export const NOTES_CONFIG = [
                         id: 'larl41-ch3',
                         title: '矩阵的秩、向量线性相关性与线性方程组解的结构',
                         file: 'assets/notes/Linear Algebra Review Lecture for the 1st layer/chapter3/ch3.md'
+                    }
+                ]
+            },
+            {
+                category: "矩阵分析",
+                children: [
+                    {
+                        category: "预备",
+                        notes: [
+                            {
+                                id: 'matrix analysis-ch1-4',
+                                title: '张量积',
+                                file: 'assets/notes/Matrix Analysis/chapter1/ch1-4.md'
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                category: "推荐系统实践",
+                description: "assets/notes/推荐系统实践/description.md",
+                notes: [
+                    {
+                        id: '推荐系统实践ch1',
+                        title: '第1章 推荐系统简介',
+                        file: 'assets/notes/推荐系统实践/ch1.md'
+                    },
+                    {
+                        id: '推荐系统实践ch2',
+                        title: '第2章 利用用户行为数据',
+                        file: 'assets/notes/推荐系统实践/ch2.md'
+                    },
+                    {
+                        id: '推荐系统实践ch3',
+                        title: '第3章 推荐系统冷启动问题',
+                        file: 'assets/notes/推荐系统实践/ch3.md'
                     }
                 ]
             }
