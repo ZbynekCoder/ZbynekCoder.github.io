@@ -384,15 +384,35 @@ export const NOTES_CONFIG = [
                 ]
             },
             {
-                category: "矩阵分析",
+                category: "Matrix Analysis",
                 children: [
                     {
-                        category: "预备",
+                        category: "A Review of Linear Algebra",
                         notes: [
                             {
                                 id: 'matrix analysis-ch1-4',
-                                title: '张量积',
+                                title: 'Tensor Products',
                                 file: 'assets/notes/Matrix Analysis/chapter1/ch1-4.md'
+                            }
+                        ]
+                    },
+                    {
+                        category: "Majorisation and Doubly Stochastic Matrices",
+                        notes: [
+                            {
+                                id: 'matrix analysis-ch1-4',
+                                title: 'Basic Notions',
+                                file: 'todo'
+                            }
+                        ]
+                    },
+                    {
+                        category: "A Selection of Matrix Inequalities",
+                        notes: [
+                            {
+                                id: 'matrix analysis-ch1-4',
+                                title: 'Some Basic Lemma',
+                                file: 'todo'
                             }
                         ]
                     }
@@ -416,6 +436,21 @@ export const NOTES_CONFIG = [
                         id: '推荐系统实践ch3',
                         title: '第3章 推荐系统冷启动问题',
                         file: 'assets/notes/推荐系统实践/ch3.md'
+                    },
+                    {
+                        id: '推荐系统实践ch4',
+                        title: '第4章 利用用户标签数据',
+                        file: 'assets/notes/推荐系统实践/ch4.md'
+                    },
+                    {
+                        id: '推荐系统实践ch5',
+                        title: '第5章 利用上下文信息',
+                        file: 'assets/notes/推荐系统实践/ch5.md'
+                    },
+                    {
+                        id: '推荐系统实践ch8',
+                        title: '第8章 评分预测问题',
+                        file: 'assets/notes/推荐系统实践/ch8.md'
                     }
                 ]
             }
