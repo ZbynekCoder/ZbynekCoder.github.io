@@ -1,7 +1,16 @@
 import {NOTES_CONFIG} from './notes-config.js';
+import { setupHeaderScrollEffect, setupMobileMenuToggle, setupNavLinkClick, setupSmoothScroll } from './utils.js';
 
 // 页面加载完成后执行
 document.addEventListener('DOMContentLoaded', function () {
+    // 全局初始化Mermaid
+    mermaid.initialize({
+        startOnLoad: false,
+        theme: 'default',
+        flowchart: { useMaxWidth: true, htmlLabels: true },
+        securityLevel: 'loose'
+    });
+
     // 获取DOM元素
     const header = document.getElementById('header');
     const menuToggle = document.getElementById('menuToggle');
@@ -9,6 +18,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const navLinksItems = document.querySelectorAll('.nav-link');
     const categoriesList = document.getElementById('categoriesList');
     const noteContent = document.getElementById('noteContent');
+
+    // 调用工具函数
+    setupHeaderScrollEffect(header);
+    setupMobileMenuToggle(menuToggle, navLinks);
+    setupNavLinkClick(navLinksItems, menuToggle, navLinks);
+    setupSmoothScroll();
 
     // 初始化分类列表
     function initCategoriesList(config, parentContainer) {
@@ -178,53 +193,34 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // 渲染 Mermaid 图表
                 const mermaidBlocks = container.querySelectorAll('pre code.language-mermaid');
-                const mermaidPromises = [];
 
+                // 转换所有Mermaid代码块为div容器
                 mermaidBlocks.forEach((block) => {
-                    const parent = block.parentNode;
                     const graphDefinition = block.textContent;
-
-                    // 创建临时容器
                     const tempDiv = document.createElement('div');
-                    tempDiv.className = 'mermaid-container';
-                    parent.parentNode.replaceChild(tempDiv, parent);
+                    tempDiv.className = 'mermaid';
+                    tempDiv.textContent = graphDefinition;
 
-                    // 渲染Mermaid并保存Promise
-                    const renderMermaid = () => {
-                        return mermaid.mermaidAPI.render(
-                            'mermaid-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9),
-                            graphDefinition
-                        )
-                            .then(svgCode => {
-                                tempDiv.innerHTML = svgCode.svg;
-                            })
-                            .catch(error => {
-                                if (error.message.includes('already registered')) {
-                                    // 重置 Mermaid 环境
-                                    mermaid.mermaidAPI.reset();
-                                    mermaid.mermaidAPI.initialize({
-                                        startOnLoad: false,
-                                        flowchart: { useMaxWidth: true, htmlLabels: true },
-                                        securityLevel: 'loose'
-                                    });
-                                    // 重新尝试渲染
-                                    return renderMermaid();
-                                }
-                                console.error('Mermaid渲染错误:', error);
-                                tempDiv.innerHTML = `<div class="mermaid-error">图表渲染错误: ${error.message}</div>`;
-                            });
-                    };
-
-                    mermaidPromises.push(renderMermaid());
+                    // 替换原始代码块
+                    block.parentNode.replaceWith(tempDiv);
                 });
 
-                // 代码高亮
-                Promise.all(mermaidPromises).then(() => {
-                    // 代码高亮（排除mermaid代码块）
-                    container.querySelectorAll('pre code:not(.language-mermaid)').forEach((block) => {
-                        hljs.highlightElement(block);
+                // 使用Mermaid的run方法渲染所有图表
+                mermaid.run({
+                    querySelector: '.mermaid',
+                    nodes: container.querySelectorAll('.mermaid'),
+                }).catch(error => {
+                    console.error('Mermaid渲染错误:', error);
+                    container.querySelectorAll('.mermaid').forEach(el => {
+                        el.innerHTML = `<div class="mermaid-error">图表渲染错误: ${error.message}</div>`;
                     });
                 });
+
+                // 代码高亮（排除mermaid代码块）
+                container.querySelectorAll('pre code:not(.language-mermaid)').forEach((block) => {
+                    hljs.highlightElement(block);
+                });
+
                 // 渲染LaTeX公式
                 renderMathInElement(container, {
                     delimiters: [
@@ -245,59 +241,6 @@ document.addEventListener('DOMContentLoaded', function () {
             `;
             });
     }
-
-    // 导航栏滚动效果
-    window.addEventListener('scroll', function () {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-            header.style.padding = '10px 0';
-        } else {
-            header.classList.remove('scrolled');
-            header.style.padding = '15px 0';
-        }
-    });
-
-    // 移动端菜单切换
-    menuToggle.addEventListener('click', function () {
-        navLinks.classList.toggle('open');
-        const icon = menuToggle.querySelector('i');
-        if (icon.classList.contains('fa-bars')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-
-    // 导航链接点击关闭菜单（移动端）
-    navLinksItems.forEach(link => {
-        link.addEventListener('click', function () {
-            if (window.innerWidth <= 768) {
-                navLinks.classList.remove('open');
-                const icon = menuToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-    });
-
-    // 平滑滚动
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
 
     // 初始化分类列表
     initCategoriesList(NOTES_CONFIG, categoriesList);
