@@ -124,9 +124,46 @@
     line-height: 1.8;
 }
 
-.markdown-preview h1, .markdown-preview h2, .markdown-preview h3 {
+.markdown-preview h1 {
     color: var(--secondary-color);
-    margin-bottom: 15px;
+    font-size: 2.5rem; /* 增大字体大小 */
+    font-weight: 700; /* 增加字体粗细 */
+    margin-bottom: 20px; /* 适当增加底部间距 */
+}
+
+.markdown-preview h2 {
+    color: var(--secondary-color);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.markdown-preview h3 {
+    color: var(--secondary-color);
+    font-size: 1.75rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.markdown-preview h4 {
+    color: var(--secondary-color); /* 颜色稍微变浅 */
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 14px;
+}
+
+.markdown-preview h5 {
+    color: var(--secondary-color);
+    font-size: 1.25rem;
+    font-weight: 300;
+    margin-bottom: 12px;
+}
+
+.markdown-preview h6 {
+    color: var(--secondary-color);
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 10px;
 }
 
 .markdown-preview p {

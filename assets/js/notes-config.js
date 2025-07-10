@@ -285,6 +285,47 @@ export const NOTES_CONFIG = [
         ]
     },
     {
+        category: "推荐系统",
+        children: [
+            {
+                category: "推荐系统实践",
+                description: "assets/notes/Recommender Systems/books/推荐系统实践/description.md",
+                notes: [
+                    {
+                        id: '推荐系统实践ch1',
+                        title: '第1章 推荐系统简介',
+                        file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch1.md'
+                    },
+                    {
+                        id: '推荐系统实践ch2',
+                        title: '第2章 利用用户行为数据',
+                        file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch2.md'
+                    },
+                    {
+                        id: '推荐系统实践ch3',
+                        title: '第3章 推荐系统冷启动问题',
+                        file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch3.md'
+                    },
+                    {
+                        id: '推荐系统实践ch4',
+                        title: '第4章 利用用户标签数据',
+                        file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch4.md'
+                    },
+                    {
+                        id: '推荐系统实践ch5',
+                        title: '第5章 利用上下文信息',
+                        file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch5.md'
+                    },
+                    {
+                        id: '推荐系统实践ch8',
+                        title: '第8章 评分预测问题',
+                        file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch8.md'
+                    }
+                ]
+            }
+        ]
+    },
+    {
         category: "OO-Starter",
         notes: [
             {
@@ -415,42 +456,6 @@ export const NOTES_CONFIG = [
                                 file: 'todo'
                             }
                         ]
-                    }
-                ]
-            },
-            {
-                category: "推荐系统实践",
-                description: "assets/notes/推荐系统实践/description.md",
-                notes: [
-                    {
-                        id: '推荐系统实践ch1',
-                        title: '第1章 推荐系统简介',
-                        file: 'assets/notes/推荐系统实践/ch1.md'
-                    },
-                    {
-                        id: '推荐系统实践ch2',
-                        title: '第2章 利用用户行为数据',
-                        file: 'assets/notes/推荐系统实践/ch2.md'
-                    },
-                    {
-                        id: '推荐系统实践ch3',
-                        title: '第3章 推荐系统冷启动问题',
-                        file: 'assets/notes/推荐系统实践/ch3.md'
-                    },
-                    {
-                        id: '推荐系统实践ch4',
-                        title: '第4章 利用用户标签数据',
-                        file: 'assets/notes/推荐系统实践/ch4.md'
-                    },
-                    {
-                        id: '推荐系统实践ch5',
-                        title: '第5章 利用上下文信息',
-                        file: 'assets/notes/推荐系统实践/ch5.md'
-                    },
-                    {
-                        id: '推荐系统实践ch8',
-                        title: '第8章 评分预测问题',
-                        file: 'assets/notes/推荐系统实践/ch8.md'
                     }
                 ]
             }
