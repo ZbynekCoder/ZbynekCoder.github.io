@@ -331,12 +331,12 @@ export const NOTES_CONFIG = [
             {
                 id: 'intro',
                 title: '1.从C到C++的面向对象简介',
-                file: 'assets/notes/OO-Starter/chapter1/1.从C到C++的面向对象简介.md'
+                file: 'assets/notes/OO-Starter/1.从C到C++的面向对象简介.md'
             },
             {
                 id: 'uml',
                 title: '2.UML与类图',
-                file: 'assets/notes/OO-Starter/chapter2/2.UML与类图.md'
+                file: 'assets/notes/OO-Starter/2.UML与类图.md'
             },
             {
                 id: 'encapsulation',
@@ -366,6 +366,11 @@ export const NOTES_CONFIG = [
             {
                 id: 'python-oop',
                 title: 'A2.Python-OOP',
+                file: 'todo'
+            },
+            {
+                id: 'python-packages',
+                title: 'A3.有用的Python包',
                 file: 'todo'
             }
         ]
