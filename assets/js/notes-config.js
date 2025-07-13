@@ -5,72 +5,72 @@ export const NOTES_CONFIG = [
             {
                 id: 'asymptotic',
                 title: '渐进分析',
-                file: 'todo'
+                file: 'assets/notes/data structure/asymptotic/渐进分析.md'
             },
             {
                 id: 'dnc',
                 title: '分治与减治分析',
-                file: 'todo'
+                file: 'assets/notes/data structure/dnc/分治与减治分析.md'
             },
             {
                 id: 'vector',
                 title: '向量Vector',
-                file: 'todo'
+                file: 'assets/notes/data structure/vector/向量Vector.md'
             },
             {
                 id: 'stack-queue',
                 title: '栈Stack、队列Queue',
-                file: 'todo'
+                file: 'assets/notes/data structure/stack-queue/栈Stack、队列Queue.md'
             },
             {
                 id: 'list',
                 title: '链表List、跳表SkipList',
-                file: 'todo'
+                file: 'assets/notes/data structure/list/链表List、跳表SkipList.md'
             },
             {
                 id: 'hashtable',
                 title: '散列表HashTable',
-                file: 'todo'
+                file: 'assets/notes/data structure/hashtable/散列表HashTable.md'
             },
             {
                 id: 'binary tree',
                 title: '二叉树BinaryTree',
-                file: 'todo'
+                file: 'assets/notes/data structure/binary tree/二叉树BinaryTree.md'
             },
             {
                 id: 'search tree',
                 title: '搜索树SearchTree',
-                file: 'todo'
+                file: 'assets/notes/data structure/search tree/搜索树SearchTree.md'
             },
             {
                 id: 'graph',
                 title: '图Graph',
-                file: 'todo'
+                file: 'assets/notes/data structure/graph/图Graph.md'
             },
             {
                 id: 'priority queue',
                 title: '优先级队列PriorityQueue',
-                file: 'todo'
+                file: 'assets/notes/data structure/priority queue/优先级队列PriorityQueue.md'
             },
             {
                 id: 'string',
                 title: '字符串匹配',
-                file: 'todo'
+                file: 'assets/notes/data structure/string/字符串匹配.md'
             },
             {
                 id: 'sorting',
                 title: '排序Sorting',
-                file: 'todo'
+                file: 'assets/notes/data structure/sorting/排序Sorting.md'
             },
             {
                 id: 'selection',
                 title: '选择问题Selection',
-                file: 'todo'
+                file: 'assets/notes/data structure/selection/选择问题Selection.md'
             },
             {
                 id: 'exercise-for-ds',
                 title: '习题',
-                file: 'todo'
+                file: 'assets/notes/data structure/exercise-for-ds/习题.md'
             }
         ]
     },
