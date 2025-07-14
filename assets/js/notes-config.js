@@ -28,6 +28,11 @@ export const NOTES_CONFIG = [
                 file: 'assets/notes/data structure/stack-queue/栈Stack、队列Queue.md'
             },
             {
+                id: 'catalan',
+                title: 'Catalan数',
+                file: 'assets/notes/data structure/catalan/Catalan数.md'
+            },
+            {
                 id: 'hashtable',
                 title: '散列表HashTable',
                 file: 'assets/notes/data structure/hashtable/散列表HashTable.md'
