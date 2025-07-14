@@ -18,14 +18,14 @@ export const NOTES_CONFIG = [
                 file: 'assets/notes/data structure/vector/向量Vector.md'
             },
             {
-                id: 'stack-queue',
-                title: '栈Stack、队列Queue',
-                file: 'assets/notes/data structure/stack-queue/栈Stack、队列Queue.md'
-            },
-            {
                 id: 'list',
                 title: '链表List、跳表SkipList',
                 file: 'assets/notes/data structure/list/链表List、跳表SkipList.md'
+            },
+            {
+                id: 'stack-queue',
+                title: '栈Stack、队列Queue',
+                file: 'assets/notes/data structure/stack-queue/栈Stack、队列Queue.md'
             },
             {
                 id: 'hashtable',
