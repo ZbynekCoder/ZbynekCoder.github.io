@@ -149,12 +149,22 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // 显示加载状态
+        // 显示骨架屏
         noteContent.innerHTML = `
-        <div class="loading-indicator">
-            <i class="fas fa-spinner fa-spin"></i> 加载中...
+        <div class="skeleton-screen">
+            <!-- 骨架屏内容 -->
+            <div class="skeleton-line"></div>
+            <div class="skeleton-line"></div>
+            <div class="skeleton-line"></div>
         </div>
     `;
+
+    //     // 显示加载状态
+    //     noteContent.innerHTML = `
+    //     <div class="loading-indicator">
+    //         <i class="fas fa-spinner fa-spin"></i> 加载中...
+    //     </div>
+    // `;
 
         // 异步加载 Markdown 文件
         fetch(filePath)
