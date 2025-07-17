@@ -381,6 +381,98 @@ export const NOTES_CONFIG = [
         ]
     },
     {
+        category: "数值方法",
+        notes: [
+            {
+                id: 'numerical error',
+                title: '算术运算误差分析',
+                file: 'assets/notes/numerical method/算术运算误差分析.md'
+            },
+            {
+                id: 'linear-directly',
+                title: '解线性方程组的直接法',
+                file: 'assets/notes/numerical method/解线性方程组的直接法.md'
+            },
+            {
+                id: 'linear-iterative',
+                title: '解线性方程组的迭代法',
+                file: 'assets/notes/numerical method/解线性方程组的迭代法.md'
+            },
+            {
+                id: 'linear LS',
+                title: '线性最小二乘问题',
+                file: 'assets/notes/numerical method/线性最小二乘问题.md'
+            },
+            {
+                id: 'linear eigen',
+                title: '矩阵特征值问题',
+                file: 'assets/notes/numerical method/矩阵特征值问题.md'
+            },
+            {
+                id: 'interpolation',
+                title: '插值方法',
+                file: 'assets/notes/numerical method/插值方法.md'
+            },
+            {
+                id: 'numerical integration',
+                title: '数值积分方法',
+                file: 'assets/notes/numerical method/数值积分方法.md'
+            },
+            {
+                id: 'numerical approximation',
+                title: '函数逼近论',
+                file: 'assets/notes/numerical method/函数逼近论.md'
+            },
+            {
+                id: 'non-linear',
+                title: '非线性方程数值方法',
+                file: 'assets/notes/numerical method/非线性方程数值方法.md'
+            },
+            {
+                id: 'ode',
+                title: '常微分方程定解问题的数值解法',
+                file: 'assets/notes/numerical method/常微分方程定解问题的数值解法.md'
+            },
+        ],
+        children: [
+            {
+                category: "解偏微分方程的有限差分方法",
+                notes: [
+                    {
+                        id: 'pde-num classical',
+                        title: '古典格式',
+                        file: 'assets/notes/numerical method/pde finite difference method/古典格式.md'
+                    },
+                    {
+                        id: 'pde-num linear basic theory',
+                        title: '线性差分格式基本理论',
+                        file: 'assets/notes/numerical method/pde finite difference method/线性差分格式基本理论.md'
+                    },
+                    {
+                        id: 'pde-num linear parabolic',
+                        title: '线性抛物型方程',
+                        file: 'assets/notes/numerical method/pde finite difference method/线性抛物型方程.md'
+                    },
+                    {
+                        id: 'pde-num linear hyperbolic',
+                        title: '线性双曲型方程',
+                        file: 'assets/notes/numerical method/pde finite difference method/线性双曲型方程.md'
+                    },
+                    {
+                        id: 'pde-num linear constant coefficients diffusion',
+                        title: '线性常系数对流扩散方程',
+                        file: 'assets/notes/numerical method/pde finite difference method/线性常系数对流扩散方程.md'
+                    },
+                    {
+                        id: 'pde-num elliptic',
+                        title: '椭圆型方程',
+                        file: 'assets/notes/numerical method/pde finite difference method/椭圆型方程.md'
+                    },
+                ]
+            }
+        ]
+    },
+    {
         category: "杂项",
         children: [
             {
