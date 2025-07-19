@@ -105,7 +105,7 @@ export const NOTES_CONFIG = [
             {
                 id: 'io',
                 title: 'I/O',
-                file: 'assets/notes/computer organization/io/I\/O.md'
+                file: 'assets/notes/computer organization/io/IO.md'
             },
             {
                 id: 'bus',
