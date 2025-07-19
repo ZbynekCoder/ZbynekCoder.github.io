@@ -48,14 +48,14 @@ export const NOTES_CONFIG = [
                 file: 'assets/notes/data structure/search tree/搜索树SearchTree.md'
             },
             {
-                id: 'graph',
-                title: '图Graph',
-                file: 'assets/notes/data structure/graph/图Graph.md'
-            },
-            {
                 id: 'priority queue',
                 title: '优先级队列PriorityQueue',
                 file: 'assets/notes/data structure/priority queue/优先级队列PriorityQueue.md'
+            },
+            {
+                id: 'graph',
+                title: '图Graph',
+                file: 'assets/notes/data structure/graph/图Graph.md'
             },
             {
                 id: 'string',
@@ -66,11 +66,6 @@ export const NOTES_CONFIG = [
                 id: 'sorting',
                 title: '排序Sorting',
                 file: 'assets/notes/data structure/sorting/排序Sorting.md'
-            },
-            {
-                id: 'selection',
-                title: '选择问题Selection',
-                file: 'assets/notes/data structure/selection/选择问题Selection.md'
             },
             {
                 id: 'exercise-for-ds',
