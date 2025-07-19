@@ -130,22 +130,22 @@ export const NOTES_CONFIG = [
             {
                 id: 'cpu-management',
                 title: 'CPU管理',
-                file: 'todo'
+                file: 'assets/notes/operation system/cpu-management/CPU管理.md'
             },
             {
                 id: 'memory-management',
                 title: '内存管理',
-                file: 'todo'
+                file: 'assets/notes/operation system/memory-management/内存管理.md'
             },
             {
                 id: 'file-management',
                 title: '文件管理',
-                file: 'todo'
+                file: 'assets/notes/operation system/file-management/文件管理.md'
             },
             {
                 id: 'exercise-for-os',
                 title: '习题',
-                file: 'todo'
+                file: 'assets/notes/operation system/exercise-for-os/习题.md'
             }
         ]
     },
