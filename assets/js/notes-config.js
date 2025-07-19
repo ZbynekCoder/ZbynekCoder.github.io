@@ -561,6 +561,13 @@ export const NOTES_CONFIG = [
                     }
                 ]
             }
+        ],
+        notes: [
+            {
+                id: 'riscv',
+                title: 'RISC-V',
+                file: 'assets/notes/riscv/RISC-V.md'
+            }
         ]
     }
 ];
