@@ -127,7 +127,7 @@
 
 ## 左式堆
 
-添加外部节点成为**<font color=#956FE7>真二叉树</font>**
+添加外部节点成为<font color=#956FE7>**真二叉树**</font>
 
 对任意内部节点node，有<font color=#956FE7>$npl(node.leftChild) >= npl(node.rightChild)$</font>
 
