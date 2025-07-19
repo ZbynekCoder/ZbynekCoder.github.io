@@ -68,6 +68,11 @@ export const NOTES_CONFIG = [
                 file: 'assets/notes/data structure/sorting/排序Sorting.md'
             },
             {
+                id: 'selection',
+                title: '选择问题Selection',
+                file: 'assets/notes/data structure/selection/选择问题Selection.md'
+            },
+            {
                 id: 'exercise-for-ds',
                 title: '习题',
                 file: 'assets/notes/data structure/exercise-for-ds/习题.md'
