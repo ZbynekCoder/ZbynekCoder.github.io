@@ -85,37 +85,37 @@ export const NOTES_CONFIG = [
             {
                 id: 'device number',
                 title: '机器数表示和运算',
-                file: 'todo'
+                file: 'assets/notes/computer organization/device number/机器数表示和运算.md'
             },
             {
                 id: 'instruction',
                 title: '指令系统',
-                file: 'todo'
+                file: 'assets/notes/computer organization/instruction/指令系统.md'
             },
             {
                 id: 'cpu',
                 title: 'CPU',
-                file: 'todo'
+                file: 'assets/notes/computer organization/cpu/CPU.md'
             },
             {
                 id: 'memory',
                 title: '存储器',
-                file: 'todo'
+                file: 'assets/notes/computer organization/memory/存储器.md'
             },
             {
                 id: 'io',
                 title: 'I/O',
-                file: 'todo'
+                file: 'assets/notes/computer organization/io/I\/O.md'
             },
             {
                 id: 'bus',
                 title: '总线',
-                file: 'todo'
+                file: 'assets/notes/computer organization/bus/总线.md'
             },
             {
                 id: 'exercise-for-co',
                 title: '习题',
-                file: 'todo'
+                file: 'assets/notes/computer organization/exercise-for-co/习题.md'
             }
         ]
     },
@@ -155,47 +155,47 @@ export const NOTES_CONFIG = [
             {
                 id: 'ref-model',
                 title: '网络参考模型',
-                file: 'todo'
+                file: 'assets/notes/computer network/ref-model/网络参考模型.md'
             },
             {
                 id: 'physical layer',
                 title: '物理层',
-                file: 'todo'
+                file: 'assets/notes/computer network/physical layer/物理层.md'
             },
             {
                 id: 'data link layer',
                 title: '数据链路层',
-                file: 'todo'
+                file: 'assets/notes/computer network/data link layer/数据链路层.md'
             },
             {
                 id: 'ethernet',
                 title: '以太网',
-                file: 'todo'
+                file: 'assets/notes/computer network/ethernet/以太网.md'
             },
             {
                 id: 'wifi',
                 title: 'IEEE 802.11（WiFi）',
-                file: 'todo'
+                file: 'assets/notes/computer network/wifi/IEEE 802.11（WiFi）.md'
             },
             {
                 id: 'network layer',
                 title: '网络层',
-                file: 'todo'
+                file: 'assets/notes/computer network/network layer/网络层.md'
             },
             {
                 id: 'transition layer',
                 title: '传输层',
-                file: 'todo'
+                file: 'assets/notes/computer network/transition layer/传输层.md'
             },
             {
                 id: 'application layer',
                 title: '应用层',
-                file: 'todo'
+                file: 'assets/notes/computer network/application layer/应用层.md'
             },
             {
                 id: 'exercise-for-cn',
                 title: '习题',
-                file: 'todo'
+                file: 'assets/notes/computer network/exercise-for-cn/习题.md'
             }
         ]
     },
@@ -205,87 +205,87 @@ export const NOTES_CONFIG = [
             {
                 id: 'principle',
                 title: '面向对象设计原则',
-                file: 'todo'
+                file: 'assets/notes/design pattern/principle/面向对象设计原则.md'
             },
             {
                 id: 'factory pattern',
                 title: '工厂模式Factory Pattern',
-                file: 'todo'
+                file: 'assets/notes/design pattern/factory pattern/工厂模式Factory Pattern.md'
             },
             {
                 id: 'builder pattern',
                 title: '建造者模式Builder Pattern',
-                file: 'todo'
+                file: 'assets/notes/design pattern/builder pattern/建造者模式Builder Pattern.md'
             },
             {
                 id: 'strategy pattern',
                 title: '策略模式Strategy Pattern',
-                file: 'todo'
+                file: 'assets/notes/design pattern/strategy pattern/策略模式Strategy Pattern.md'
             },
             {
                 id: 'observer pattern',
                 title: '观察者模式Observer Pattern',
-                file: 'todo'
+                file: 'assets/notes/design pattern/observer pattern/观察者模式Observer Pattern.md'
             },
             {
                 id: 'decorator pattern',
                 title: '装饰模式Decorator Pattern',
-                file: 'todo'
+                file: 'assets/notes/design pattern/decorator pattern/装饰模式Decorator Pattern.md'
             },
             {
                 id: 'adapter pattern',
                 title: '适配器模式Adapter Pattern',
-                file: 'todo'
+                file: 'assets/notes/design pattern/adapter pattern/适配器模式Adapter Pattern.md'
             },
             {
                 id: 'composite pattern',
                 title: '组合模式Composite Pattern',
-                file: 'todo'
+                file: 'assets/notes/design pattern/composite pattern/组合模式Composite Pattern.md'
             },
             {
                 id: 'bridge pattern',
                 title: '桥接模式Bridge Pattern',
-                file: 'todo'
+                file: 'assets/notes/design pattern/bridge pattern/桥接模式Bridge Pattern.md'
             },
             {
                 id: 'mediator pattern',
                 title: '中介者模式Mediator Pattern',
-                file: 'todo'
+                file: 'assets/notes/design pattern/mediator pattern/中介者模式Mediator Pattern.md'
             },
             {
                 id: 'facade pattern',
                 title: '外观模式Facade Pattern',
-                file: 'todo'
+                file: 'assets/notes/design pattern/facade pattern/外观模式Facade Pattern.md'
             },
             {
                 id: 'flyweight pattern',
                 title: '享元模式Flyweight Pattern',
-                file: 'todo'
+                file: 'assets/notes/design pattern/flyweight pattern/享元模式Flyweight Pattern.md'
             },
             {
                 id: 'proxy pattern',
                 title: '代理模式Proxy Pattern',
-                file: 'todo'
+                file: 'assets/notes/design pattern/proxy pattern/代理模式Proxy Pattern.md'
             },
             {
                 id: 'template method pattern',
                 title: '模板方法模式Template Method Pattern',
-                file: 'todo'
+                file: 'assets/notes/design pattern/template method pattern/模板方法模式Template Method Pattern.md'
             },
             {
                 id: 'prototype pattern',
                 title: '原型模式Prototype Pattern',
-                file: 'todo'
+                file: 'assets/notes/design pattern/prototype pattern/原型模式Prototype Pattern.md'
             },
             {
                 id: 'state pattern',
                 title: '状态模式State Pattern',
-                file: 'todo'
+                file: 'assets/notes/design pattern/state pattern/状态模式State Pattern.md'
             },
             {
                 id: 'command pattern',
                 title: '命令模式Command Pattern',
-                file: 'todo'
+                file: 'assets/notes/design pattern/command pattern/命令模式Command Pattern.md'
             }
         ]
     },
