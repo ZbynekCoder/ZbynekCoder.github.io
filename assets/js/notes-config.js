@@ -84,8 +84,8 @@ export const NOTES_CONFIG = [
         notes: [
             {
                 id: 'device number',
-                title: '机器数表示和运算',
-                file: 'assets/notes/computer organization/device number/机器数表示和运算.md'
+                title: '机器数表示及运算',
+                file: 'assets/notes/computer organization/device number/机器数表示及运算.md'
             },
             {
                 id: 'instruction',
