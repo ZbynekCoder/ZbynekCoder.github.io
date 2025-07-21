@@ -201,6 +201,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 noteContent.innerHTML = '';
                 noteContent.appendChild(container);
 
+                // 生成并显示大纲
+                generateOutline(container);
+
                 // 渲染 Mermaid 图表
                 const mermaidBlocks = container.querySelectorAll('pre code.language-mermaid');
 
@@ -250,6 +253,108 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
             `;
             });
+    }
+
+    // 生成大纲
+    function generateOutline(container) {
+        const outlineContainer = document.getElementById('outlineContainer');
+        const headings = container.querySelectorAll('h1, h2, h3, h4, h5, h6');
+
+        // 如果没有标题，隐藏大纲容器
+        if (headings.length === 0) {
+            outlineContainer.innerHTML = '';
+            return;
+        }
+
+        // 创建大纲标题
+        const outlineTitle = document.createElement('div');
+        outlineTitle.className = 'outline-title';
+        outlineTitle.textContent = '大纲';
+
+        // 创建大纲列表
+        const outlineList = document.createElement('ul');
+        outlineList.className = 'outline-list';
+
+        // 遍历所有标题，添加到大纲
+        headings.forEach(heading => {
+            // 为每个标题添加唯一ID（如果没有）
+            if (!heading.id) {
+                heading.id = 'heading-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+            }
+
+            // 获取标题级别 (1-6)
+            const level = parseInt(heading.tagName.replace('H', ''));
+
+            // 创建大纲项
+            const listItem = document.createElement('li');
+            listItem.className = 'outline-item';
+
+            // 创建大纲链接
+            const link = document.createElement('a');
+            link.className = `outline-link outline-level-${level}`;
+            link.href = '#' + heading.id;
+            link.textContent = heading.textContent;
+
+            // 添加点击事件，平滑滚动到对应标题
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 100, // 考虑导航栏高度
+                        behavior: 'smooth'
+                    });
+                }
+            });
+
+            listItem.appendChild(link);
+            outlineList.appendChild(listItem);
+        });
+
+        // 更新大纲容器内容
+        outlineContainer.innerHTML = '';
+        outlineContainer.appendChild(outlineTitle);
+        outlineContainer.appendChild(outlineList);
+
+        // 设置滚动监听，高亮当前可见的标题
+        setupOutlineScrollHighlight(headings);
+    }
+
+    // 设置滚动监听，高亮当前可见的标题
+    function setupOutlineScrollHighlight(headings) {
+        // 移除之前的滚动监听
+        window.removeEventListener('scroll', updateActiveOutlineItem);
+
+        // 添加新的滚动监听
+        function updateActiveOutlineItem() {
+            const scrollPosition = window.scrollY + 120; // 考虑导航栏高度
+            let activeHeading = null;
+
+            // 找到当前可见的标题
+            headings.forEach(heading => {
+                const headingTop = heading.offsetTop;
+                if (headingTop <= scrollPosition) {
+                    activeHeading = heading;
+                }
+            });
+
+            // 更新大纲链接的激活状态
+            if (activeHeading) {
+                document.querySelectorAll('.outline-link').forEach(link => {
+                    if (link.getAttribute('href') === '#' + activeHeading.id) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        // 初始执行一次，设置初始状态
+        updateActiveOutlineItem();
+
+        // 添加滚动监听
+        window.addEventListener('scroll', updateActiveOutlineItem);
     }
 
     // 初始化分类列表

@@ -58,6 +58,89 @@
     margin-left: 10px;
 }
 
+/* 主要内容区域布局 */
+.main-content {
+    flex: 1;
+    display: flex;
+    gap: 2rem;
+}
+
+/* 大纲容器样式 */
+.outline-container {
+    flex: 0 0 250px;
+    max-width: 250px;
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+.outline-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.outline-list {
+    list-style: none;
+    padding: 0;
+}
+
+.outline-item {
+    margin-bottom: 0.5rem;
+}
+
+.outline-link {
+    text-decoration: none;
+    color: var(--gray-color);
+    transition: var(--transition);
+    display: block;
+    padding: 0.25rem 0;
+}
+
+.outline-link:hover {
+    color: var(--primary-color);
+}
+
+.outline-link.active {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+/* 不同级别标题的缩进 */
+.outline-level-1 { padding-left: 0; }
+.outline-level-2 { padding-left: 20px; }
+.outline-level-3 { padding-left: 40px; }
+.outline-level-4 { padding-left: 60px; }
+.outline-level-5 { padding-left: 80px; }
+.outline-level-6 { padding-left: 100px; }
+
+/* 响应式调整 */
+@media (max-width: 1024px) {
+    .outline-container {
+        flex: 0 0 200px;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+
+    .outline-container {
+        flex: 1;
+        max-width: none;
+        position: static;
+        max-height: none;
+        margin-top: 2rem;
+    }
+}
+
 .notes-list {
     list-style: none;
     padding: 0;
