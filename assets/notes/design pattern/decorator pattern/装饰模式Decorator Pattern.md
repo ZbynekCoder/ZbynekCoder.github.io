@@ -1,14 +1,14 @@
 # 装饰模式Decorator Pattern
 
-# 模式定义
+## 模式定义
 
 动态地给对象增加额外的职责
 
-- **对象结构型模式**
+- <font color=#956FE7>**对象结构型模式**</font>
 
-# 模式结构
+## 模式结构
 
-![img](assets/b75bd56088154f22b68b731a39fff38e.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)编辑
+![img](assets/b75bd56088154f22b68b731a39fff38e.png)
 
 - Component：抽象构件
 - ConcreteComponent：具体构件
@@ -31,8 +31,6 @@ public class Decorator extends Component {
 
 }
 ```
-
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 
 具体装饰类代码
 
@@ -57,47 +55,45 @@ public class ConcreteDecorator extends Decorator {
 }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
-
 - 一个装饰类的接口必须与被装饰类的接口保持相同 
   - 对于客户端来说无论是装饰之前的对象还是装饰之后的对象都可以一致对待
 - 尽量保持具体构件类Component作为一个“轻”类 
   - 不要把太多的逻辑和状态放在具体构件类中可以通过装饰类对其进行扩展
 
-## 简化装饰模式
+### 简化装饰模式
 
 如果只有一个具体构件类而没有抽象构件类，那么抽象装饰类可以作为具体构件类的直接子类
 
-## 透明装饰模式
+### 透明装饰模式
 
 客户端完全面向抽象编程
 
 - 客户端不声明具体构件类型和具体装饰类型，而全部声明为抽象构件类型
 
-## 半透明装饰模式
+### 半透明装饰模式
 
 客户端面向**抽象构件类型**和**具体装饰类型**编程
 
 - 客户端可以声明具体装饰者类型对象，调用具体装饰者中新增方法
 
-# 实例
+## 实例
 
 某系统提供了一个数据加密功能，可以对字符串进行加密。最简单的加密算法通过对字母进行移位来实现，同时还提供了稍复杂的逆向输出加密，还提供了更为高级的求模加密。用户先使用最简单的加密算法对字符串进行加密，如果觉得还不够可以对加密之后的结果使用其他加密算法进行二次加密，当然也可以进行第三次加密。现使用装饰模式设计该多重加密系统。
 
-![img](assets/d2c88478ffe04fa0a5492942dc5d88e2.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)编辑
+![img](assets/d2c88478ffe04fa0a5492942dc5d88e2.png)
 
-# 模式分析
+## 模式分析
 
-- **优点**
+- <font color=#1C7331>**优点**</font>
   - 提供比继承更多的灵活性以扩展对象功能
   - 通过配置文件在运行时选择不同的装饰器以动态扩展对象功能
   - 具体构件类和具体装饰类可以独立变化 	
-    - **符合开闭原则**
-- **缺点**
+    - <font color=#1C7331>**符合开闭原则**</font>
+- <font color=#BE191C>**缺点**</font>
   - 增加系统的复杂度
   - 比继承更加易于出错，排错困难
 
-## 适用环境
+### 适用环境
 
 - 在不影响其他对象的情况下，以动态、透明的方式给单个对象添加职责
 - 需要动态地给一个对象增加功能，这些功能也可以动态地被撤销

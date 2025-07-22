@@ -1,14 +1,14 @@
 # 代理模式
 
-#  模式定义
+##  模式定义
 
 给某一个对象提供一个代理，并由代理对象控制对原对象的引用
 
-- **对象结构型模式**
+- <font color=#956FE7>**对象结构型模式**</font>
 
-# 模式结构
+## 模式结构
 
-![img](assets/9dd4601850c645ef83f1f649da9cf2ea.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)编辑
+![img](assets/9dd4601850c645ef83f1f649da9cf2ea.png)
 
 - Subject：抽象主题角色
 - Proxy：代理主题角色
@@ -36,5 +36,3 @@ public class Proxy implements Subject {
 
 }
 ```
-
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)

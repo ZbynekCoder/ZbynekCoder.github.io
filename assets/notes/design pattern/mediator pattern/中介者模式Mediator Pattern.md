@@ -1,16 +1,16 @@
 # 中介者模式Mediator Pattern
 
-# 模式定义
+## 模式定义
 
 - 又称为调停者模式
 
-用一个**中介对象**来封装一系列的**对象交互**，中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互
+用一个<font color=#FF9900>**中介对象**</font>来封装一系列的<font color=#FF9900>**对象交互**</font>，中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互
 
-- 对象行为型模式
+- <font color=#956FE7>**对象行为型模式**</font>
 
-# 模式结构
+## 模式结构
 
-![img](assets/ca4ec7cb3e234dd1a51b0013f252d2ec.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)编辑
+![img](assets/ca4ec7cb3e234dd1a51b0013f252d2ec.png)
 
 - Mediator：抽象中介者
 - ConcreteMediator：具体中介者
@@ -19,8 +19,11 @@
 
 中介者模式可以使对象之间的关系数量急剧减少
 
-- 将系统的网状结构变成以中介者为中心的星形结构![img](assets/cbf94f54c13f45e5a659af74fb30a565.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)编辑
-- **迪米特法则的典型应用**
+- 将系统的网状结构变成以中介者为中心的星形结构
+
+	![img](assets/cbf94f54c13f45e5a659af74fb30a565.png)
+
+- <font color=#956FE7>**迪米特法则的典型应用**</font>
 
 中介者承担两方面的职责
 
@@ -45,8 +48,6 @@ public abstract class Mediator {
 }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
-
 具体中介者类代码
 
 ```java
@@ -60,8 +61,6 @@ public class ConcreteMediator extends Mediator {
 
 }
 ```
-
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 
 抽象同事类代码
 
@@ -79,8 +78,6 @@ public abstract class Colleague {
 
 }
 ```
-
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 
 具体同事类代码
 
@@ -102,26 +99,25 @@ public class ConcreteColleague extends Colleague {
 }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
-
-# 实例
+## 实例
 
 实例：虚拟聊天室
- 某论坛系统欲增加一个虚拟聊天室，允许论坛会员通过该聊天室进行信息交流，普通会员（CommonMember）可以给其他会员发送文本信息，钻石会员（DiamondMember）既可以给其他会员发送文本信息，还可以发送图片信息。该聊天室可以对不雅字符进行过滤，如“日”等字符；还可以对发送的图片大小进行控制。用中介者模式设计该虚拟聊天室。
 
-![img](assets/6255d116bcb047df86757507a2806b57.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)编辑
+某论坛系统欲增加一个虚拟聊天室，允许论坛会员通过该聊天室进行信息交流，普通会员（CommonMember）可以给其他会员发送文本信息，钻石会员（DiamondMember）既可以给其他会员发送文本信息，还可以发送图片信息。该聊天室可以对不雅字符进行过滤，如“日”等字符；还可以对发送的图片大小进行控制。用中介者模式设计该虚拟聊天室。
 
-# 模式分析
+![img](assets/6255d116bcb047df86757507a2806b57.png)
 
-- 优点
+## 模式分析
+
+- <font color=#1C7331>优点</font>
   - 简化了对象之间的交互
   - 将各同事解耦
   - 减少子类生成
   - 可以简化各同事类的设计和实现
-- 缺点
-  - 在具体中介者类中包含了同事之间的交互细节，**可能会导致具体中介者类非常复杂**，使得系统难以维护
+- <font color=#BE191C>缺点</font>
+  - 在具体中介者类中包含了同事之间的交互细节，<font color=#BE191C>**可能会导致具体中介者类非常复杂**</font>，使得系统难以维护
 
-## 适用环境
+### 适用环境
 
 - 系统中对象之间存在复杂的引用关系，产生的相互依赖关系结构混乱且难以理解
 - 一个对象由于引用了其他很多对象并且直接和这些对象通信，导致难以复用该对象
