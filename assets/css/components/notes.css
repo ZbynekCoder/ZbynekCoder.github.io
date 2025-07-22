@@ -62,18 +62,20 @@
 .main-content {
     flex: 1;
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 /* 大纲容器样式 */
 .outline-container {
-    flex: 0 0 250px;
-    max-width: 250px;
+    flex: 0 0 160px;
+    max-width: 160px;
+    min-width: 100px;
     position: sticky;
     top: 100px;
     align-self: flex-start;
     max-height: calc(100vh - 120px);
     overflow-y: auto;
+    padding-right: 1rem;
 }
 
 .outline-title {
@@ -119,27 +121,241 @@
 .outline-level-5 { padding-left: 80px; }
 .outline-level-6 { padding-left: 100px; }
 
-/* 响应式调整 */
-@media (max-width: 1024px) {
-    .outline-container {
-        flex: 0 0 200px;
-        max-width: 200px;
-    }
-}
-
 @media (max-width: 768px) {
     .main-content {
         flex-direction: column;
     }
 
     .outline-container {
-        flex: 1;
-        max-width: none;
+        flex: none;
+        max-width: 100%;
         position: static;
         max-height: none;
-        margin-top: 2rem;
+        margin-top: 1.5rem;
+        padding: 1rem;
+        background-color: #f8f9fa;
+        border-radius: 4px;
     }
 }
+
+@media (max-width: 1024px) {
+    .outline-container {
+        flex: 0 0 180px;
+        max-width: 180px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .notes-container {
+        gap: 3rem;
+    }
+
+    .categories-list {
+        flex: 0 0 300px;
+        max-width: 300px;
+    }
+
+    .outline-container {
+        flex: 0 0 250px;
+        max-width: 250px;
+        padding-right: 1.5rem;
+    }
+
+    .note-content {
+        padding: 2.5rem;
+        min-height: 700px;
+    }
+
+    .category-header, .note-item {
+        padding: 1rem 1.5rem;
+    }
+
+    .category-header h3 {
+        font-size: 1.15rem;
+    }
+
+    .notes-list .category-header h3 {
+        font-size: 1rem;
+    }
+
+    .outline-title {
+        font-size: 1.35rem;
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .outline-link {
+        font-size: 1.05rem;
+        padding: 0.35rem 0;
+    }
+
+    .outline-level-2 { padding-left: 25px; }
+    .outline-level-3 { padding-left: 50px; }
+    .outline-level-4 { padding-left: 75px; }
+    .outline-level-5 { padding-left: 100px; }
+    .outline-level-6 { padding-left: 125px; }
+
+    .markdown-preview {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .markdown-preview h1 {
+        font-size: 3rem;
+        margin-bottom: 28px;
+    }
+
+    .markdown-preview h2 {
+        font-size: 2.7rem;
+        margin-bottom: 24px;
+    }
+
+    .markdown-preview h3 {
+        font-size: 2.4rem;
+        margin-bottom: 20px;
+    }
+
+    .markdown-preview h4 {
+        font-size: 2.1rem;
+        margin-bottom: 18px;
+    }
+
+    .markdown-preview h5 {
+        font-size: 1.8rem;
+        margin-bottom: 16px;
+    }
+
+    .markdown-preview h6 {
+        font-size: 1.5rem;
+        margin-bottom: 14px;
+    }
+
+    .markdown-preview pre {
+        padding: 20px;
+        margin-bottom: 25px;
+    }
+
+    .markdown-preview th,
+    .markdown-preview td {
+        padding: 12px;
+    }
+
+    .equation-container {
+        padding: 1.2em;
+        margin: 2em 0;
+    }
+}
+
+@media (min-width: 2000px) {
+    .container {
+        max-width: 1800px;
+    }
+
+    .categories-list {
+        flex: 0 0 350px;
+        max-width: 350px;
+    }
+
+    .outline-container {
+        flex: 0 0 300px;
+        max-width: 300px;
+    }
+
+    .markdown-preview {
+        max-width: 1000px;
+    }
+}
+
+/* 为伟大的带鱼屏 */
+@media (min-width: 3000px) {
+    .container {
+        max-width: 2800px;
+    }
+
+    .categories-list {
+        flex: 0 0 400px;
+        max-width: 400px;
+    }
+
+    .outline-container {
+        flex: 0 0 250px;
+        max-width: 800px;
+        padding-right: 1.5rem;
+    }
+
+    .note-content {
+        padding: 2.5rem; /* 增加内边距 */
+        min-height: 700px; /* 增加最小高度 */
+    }
+
+    .outline-title {
+        font-size: 1.35rem;
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .outline-link {
+        font-size: 1.05rem;
+        padding: 0.35rem 0;
+    }
+
+    .outline-level-2 { padding-left: 25px; }
+    .outline-level-3 { padding-left: 50px; }
+    .outline-level-4 { padding-left: 75px; }
+    .outline-level-5 { padding-left: 100px; }
+    .outline-level-6 { padding-left: 125px; }
+
+    .markdown-preview {
+        max-width: 1800px; /* 限制最大宽度，避免过长行影响阅读 */
+        margin: 0 auto; /* 居中显示 */
+    }
+
+    .markdown-preview h1 {
+        font-size: 3rem;
+        margin-bottom: 28px;
+    }
+
+    .markdown-preview h2 {
+        font-size: 2.7rem;
+        margin-bottom: 24px;
+    }
+
+    .markdown-preview h3 {
+        font-size: 2.4rem;
+        margin-bottom: 20px;
+    }
+
+    .markdown-preview h4 {
+        font-size: 2.1rem;
+        margin-bottom: 18px;
+    }
+
+    .markdown-preview h5 {
+        font-size: 1.8rem;
+        margin-bottom: 16px;
+    }
+
+    .markdown-preview h6 {
+        font-size: 1.5rem;
+        margin-bottom: 14px;
+    }
+
+    .markdown-preview pre {
+        padding: 20px;
+        margin-bottom: 25px;
+    }
+
+    .markdown-preview th,
+    .markdown-preview td {
+        padding: 12px;
+    }
+
+    .equation-container {
+        padding: 1.2em;
+        margin: 2em 0;
+    }
+}
+
 
 .notes-list {
     list-style: none;
