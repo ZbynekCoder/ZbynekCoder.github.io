@@ -77,6 +77,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 const icon = this.querySelector('.category-icon');
                 const list = this.nextElementSibling;
 
+                // 取消所有笔记的选中状态
+                document.querySelectorAll('.note-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+
                 if (list.style.display === 'none') {
                     list.style.display = 'block';
                     icon.classList.remove('fa-chevron-down');
@@ -158,13 +163,6 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="skeleton-line"></div>
         </div>
     `;
-
-    //     // 显示加载状态
-    //     noteContent.innerHTML = `
-    //     <div class="loading-indicator">
-    //         <i class="fas fa-spinner fa-spin"></i> 加载中...
-    //     </div>
-    // `;
 
         // 异步加载 Markdown 文件
         fetch(filePath)
