@@ -293,38 +293,71 @@ export const NOTES_CONFIG = [
         category: "推荐系统",
         children: [
             {
-                category: "推荐系统实践",
-                description: "assets/notes/Recommender Systems/books/推荐系统实践/description.md",
+                category: "books",
+                children: [
+                    {
+                        category: "推荐系统实践",
+                        description: "assets/notes/Recommender Systems/books/推荐系统实践/description.md",
+                        notes: [
+                            {
+                                id: '推荐系统实践ch1',
+                                title: '第1章 推荐系统简介',
+                                file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch1.md'
+                            },
+                            {
+                                id: '推荐系统实践ch2',
+                                title: '第2章 利用用户行为数据',
+                                file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch2.md'
+                            },
+                            {
+                                id: '推荐系统实践ch3',
+                                title: '第3章 推荐系统冷启动问题',
+                                file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch3.md'
+                            },
+                            {
+                                id: '推荐系统实践ch4',
+                                title: '第4章 利用用户标签数据',
+                                file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch4.md'
+                            },
+                            {
+                                id: '推荐系统实践ch5',
+                                title: '第5章 利用上下文信息',
+                                file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch5.md'
+                            },
+                            {
+                                id: '推荐系统实践ch8',
+                                title: '第8章 评分预测问题',
+                                file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch8.md'
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                category: "papers",
                 notes: [
                     {
-                        id: '推荐系统实践ch1',
-                        title: '第1章 推荐系统简介',
-                        file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch1.md'
+                        id: 'Towards Agentic Recommender Systems in the Era of Multimodal',
+                        title: 'Towards Agentic Recommender Systems in the Era of Multimodal',
+                        file: 'assets/notes/Recommender Systems/papers/Towards Agentic Recommender Systems in the Era of Multimodal.md'
                     },
                     {
-                        id: '推荐系统实践ch2',
-                        title: '第2章 利用用户行为数据',
-                        file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch2.md'
-                    },
+                        id: 'A Survey on LLM-powered Agents for Recommender Systems',
+                        title: 'A Survey on LLM-powered Agents for Recommender Systems',
+                        file: 'assets/notes/Recommender Systems/papers/A Survey on LLM-powered Agents for Recommender Systems.md'
+                    }
+                ],
+                children: [
                     {
-                        id: '推荐系统实践ch3',
-                        title: '第3章 推荐系统冷启动问题',
-                        file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch3.md'
-                    },
-                    {
-                        id: '推荐系统实践ch4',
-                        title: '第4章 利用用户标签数据',
-                        file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch4.md'
-                    },
-                    {
-                        id: '推荐系统实践ch5',
-                        title: '第5章 利用上下文信息',
-                        file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch5.md'
-                    },
-                    {
-                        id: '推荐系统实践ch8',
-                        title: '第8章 评分预测问题',
-                        file: 'assets/notes/Recommender Systems/books/推荐系统实践/ch8.md'
+                        category: "Generative Recommendation",
+                        description: "assets/notes/Recommender Systems/papers/Generative Recommendation/description.md",
+                        notes: [
+                            {
+                                id: 'Recommendation as Language Processing (RLP): A Unified Pretrain, Personalized Prompt & Predict Paradigm (P5)',
+                                title: 'Recommendation as Language Processing (RLP): A Unified Pretrain, Personalized Prompt & Predict Paradigm (P5)',
+                                file: 'assets/notes/Recommender Systems/papers/Generative Recommendation/Recommendation as Language Processing (RLP) A Unified Pretrain, Personalized Prompt & Predict Paradigm (P5).md'
+                            }
+                        ]
                     }
                 ]
             }
