@@ -1,0 +1,265 @@
+\documentclass[UTF8,a4paper,10pt]{ctexart}
+\usepackage[left=2.00cm, right=2.00cm, top=3.50cm, bottom=3.50cm]{geometry} %页边距
+\CTEXsetup[format={\Large\bfseries}]{section} %设置章标题居左
+ 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%
+% -- text font --
+% compile using Xelatex
+%%%%%%%%%%%%%%%%%%%%%%%
+% -- 中文字体 --
+%\setmainfont{Microsoft YaHei}  % 微软雅黑
+%\setmainfont{YouYuan}  % 幼圆    
+%\setmainfont{NSimSun}  % 新宋体
+%\setmainfont{KaiTi}    % 楷体
+%\setmainfont{SimSun}   % 宋体
+%\setmainfont{SimHei}   % 黑体
+% -- 英文字体 --
+%\usepackage{times}
+%\usepackage{mathpazo}
+%\usepackage{fourier}
+%\usepackage{charter}
+\usepackage{helvet}
+\usepackage{amsmath, amsfonts, amssymb} % math equations, symbols
+\usepackage[english]{babel}
+\usepackage{color}      % color content
+\usepackage{graphicx}   % import figures
+\usepackage{subfig}
+\usepackage{url}        % hyperlinks
+\usepackage{bm}         % bold type for equations
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{epstopdf}
+\usepackage{epsfig}
+\usepackage{algorithm}
+\usepackage{algorithmic} 
+\usepackage{listings} 
+\usepackage{xcolor}
+\lstset{
+    language=matlab,  %代码语言使用的是matlab
+    frame=shadowbox, %把代码用带有阴影的框圈起来
+    rulesepcolor=\color{red!20!green!20!blue!20},%代码块边框为淡青色
+    keywordstyle=\color{blue!90}\bfseries, %代码关键字的颜色为蓝色，粗体
+    commentstyle=\color{red!10!green!70}\textit,    % 设置代码注释的颜色
+    showstringspaces=false,%不显示代码字符串中间的空格标记
+    numbers=left, % 显示行号
+    numberstyle=\tiny,    % 行号字体
+    stringstyle=\ttfamily, % 代码字符串的特殊格式
+    breaklines=true, %对过长的代码自动换行
+    extendedchars=false,  %解决代码跨页时，章节标题，页眉等汉字不显示的问题
+%   escapebegin=\begin{CJK*},escapeend=\end{CJK*},      
+% 代码中出现中文必须加上，否则报错
+    texcl=true}
+\renewcommand{\algorithmicrequire}{ \textbf{Input:}}     % use Input in the format of Algorithm  
+\renewcommand{\algorithmicensure}{ \textbf{Initialize:}} % use Initialize in the format of Algorithm  
+\renewcommand{\algorithmicreturn}{ \textbf{Output:}}     % use Output in the format of Algorithm   
+
+% -------------------------允许算法跨页-------------
+\makeatletter
+\newenvironment{breakablealgorithm}
+    {% \begin{breakablealgorithm}
+    \begin{center}
+        \refstepcounter{algorithm}% New algorithm
+        \hrule height.8pt depth0pt \kern2pt% \@fs@pre for \@fs@ruled
+        \renewcommand{\caption}[2][\relax]{% Make a new \caption
+            {\raggedright\textbf{\ALG@name~\thealgorithm} ##2\par}%
+                \ifx\relax##1\relax % #1 is \relax
+                    \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##2}%
+                \else % #1 is not \relax
+                    \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##1}%
+                \fi
+            \kern2pt\hrule\kern2pt
+        }
+  }{% \end{breakablealgorithm}
+            \kern2pt\hrule\relax% \@fs@post for \@fs@ruled
+        \end{center}
+  }
+\makeatother
+ 
+\usepackage{fancyhdr} %设置页眉、页脚
+%\pagestyle{fancy}
+\lhead{}
+\chead{}
+%\rhead{\includegraphics[width=1.2cm]{fig/ZJU_BLUE.eps}}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+%\pagestyle{empty} %删除所有页码
+ 
+%%%%%%%%%%%%%%%%%%%%%%%
+%  设置水印
+%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{draftwatermark}         % 所有页加水印
+%\usepackage[firstpage]{draftwatermark} % 只有第一页加水印
+% \SetWatermarkText{Water-Mark}           % 设置水印内容
+% \SetWatermarkText{\includegraphics{fig/ZJDX-WaterMark.eps}}         % 设置水印logo
+% \SetWatermarkLightness{0.9}             % 设置水印透明度 0-1
+% \SetWatermarkScale{1}                   % 设置水印大小 0-1    
+ 
+\usepackage{hyperref} %bookmarks
+\hypersetup{colorlinks, bookmarks, unicode} %unicode
+ 
+
+\title{\textbf{3.3.2节实验报告}}
+\author{ 211840196 张博阳 }
+\date{}
+
+
+\begin{document}
+\maketitle
+
+\section*{摘要}
+\par
+本实验报告对3.3.2节提出的问题进行了数值实验，分别使用全显格式、全隐格式和CN格式对周期边值问题进行了求解，并对数值解进行了误差分析。
+
+\section{问题陈述}
+考虑周期边值问题
+$$
+    \begin{cases}
+        u_t = u_{xx}                                                      \\
+        u(x, t) = u(x + 2 \pi, t),\quad (x,t) \in \mathbb{R} \times [0,1] \\
+        u(x, 0) = u_0(x),\quad x \in \mathbb{R}
+    \end{cases}
+$$
+其中$u_0(x) = u_0^{(i)}(x), i=1, 2$，$u_0^{(1)}(x)$是间断函数
+$$
+    u_0^{(1)}(x) =
+    \begin{cases}
+        1,\quad x \in \left[ -\dfrac{\pi}{2}, \dfrac{\pi}{2} \right] \\
+        0,\quad x \in \left[ -\pi, -\dfrac{\pi}{2} \right) \cup \left( \dfrac{\pi}{2}, \pi \right]
+    \end{cases}
+$$
+$u_0^{(2)}(x)$是导数间断的连续函数
+$$
+    u_0^{(2)}(x) = \pi - \left| x \right|,\quad x \in \left[ -\pi,\pi \right]
+$$
+对上述问题，固定网比$\mu = 0.4$，分别利用全显格式，全隐格式和CN格式，进行数值模拟，计算其最终时刻误差$L_2$模与误差阶。
+
+
+\section{格式的程序设计}
+\par
+对于热传导方程齐次周期边值问题的线性双层格式，均可写为
+$$
+    B_1 u^{n+1} = B_0 u^n
+$$
+其中$u_n$为$J$维向量。对于全显格式
+$$
+    B_1 = I
+$$
+$$
+    B_0 =
+    \begin{bmatrix}
+        1 - 2 \mu a & \mu a       &        &        & \mu a       \\
+        \mu a       & 1 - 2 \mu a & \ddots &        &             \\
+                    & \ddots      & \ddots & \ddots &             \\
+                    &             & \ddots & \ddots & \mu a       \\
+        \mu a       &             &        & \mu a  & 1 - 2 \mu a \\
+    \end{bmatrix}
+    = \mathrm{ptridiag} \{\mu a, 1 - 2 \mu a, \mu a\}
+$$
+对于全隐格式
+$$
+    B_1 =
+    \begin{bmatrix}
+        1 + 2 \mu a & -\mu a      &        &        & -\mu a      \\
+        -\mu a      & 1 + 2 \mu a & \ddots &        &             \\
+                    & \ddots      & \ddots & \ddots &             \\
+                    &             & \ddots & \ddots & -\mu a      \\
+        -\mu a      &             &        & -\mu a & 1 + 2 \mu a \\
+    \end{bmatrix}
+    = \mathrm{ptridiag} \{-\mu a, 1 + 2 \mu a, -\mu a\}
+$$
+$$
+    B_0 = I
+$$
+对于CN格式
+$$
+    B_1 =
+    \begin{bmatrix}
+        \frac{1}{2} +  \mu a & -\frac{1}{2}\mu a    &        &                   & -\frac{1}{2}\mu a   \\
+        -\frac{1}{2}\mu a    & \frac{1}{2} +  \mu a & \ddots &                   &                     \\
+                             & \ddots               & \ddots & \ddots            &                     \\
+                             &                      & \ddots & \ddots            & -\frac{1}{2}\mu a   \\
+        -\frac{1}{2}\mu a    &                      &        & -\frac{1}{2}\mu a & \frac{1}{2} + \mu a \\
+    \end{bmatrix}
+    = \mathrm{ptridiag} \{-\dfrac{1}{2}\mu a, \dfrac{1}{2} + \mu a, -\dfrac{1}{2}\mu a\}
+$$
+$$
+    B_0 =
+    \begin{bmatrix}
+        \frac{1}{2} - \mu a & \frac{1}{2} \mu a   &        &                   & \frac{1}{2} \mu a   \\
+        \frac{1}{2} \mu a   & \frac{1}{2} - \mu a & \ddots &                   &                     \\
+                            & \ddots              & \ddots & \ddots            &                     \\
+                            &                     & \ddots & \ddots            & \frac{1}{2} \mu a   \\
+        \frac{1}{2} \mu a   &                     &        & \frac{1}{2} \mu a & \frac{1}{2} - \mu a \\
+    \end{bmatrix}
+    = \mathrm{ptridiag} \{\dfrac{1}{2} \mu a, \dfrac{1}{2} - \mu a, \dfrac{1}{2} \mu a\}
+$$
+计算出右端向量后，利用Sherman-Morrison公式解循环三对角线性方程组即可实现时间推进。
+
+\section{实验结果和数据讨论}
+利用Fourier级数方法，问题的真解为
+$$
+    u^{(1)}(x,t) = \dfrac{1}{2} + \sum_{n=1}^{\infty}\dfrac{2 \sin \left( \dfrac{n \pi}{2} \right) }{n \pi} e^{-n^2t} \cos(nx)
+$$
+$$
+    u^{(2)}(x,t) = \dfrac{\pi}{2} + \sum_{n=1}^{\infty} \dfrac{4 \sin^2 \left( \dfrac{n \pi}{2} \right)}{n^2 \pi} e^{-n^2 t} \cos(nx)
+$$
+\subsection{全显格式}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|cc|cc}
+        \hline
+        \multirow{2}*{$J$} & \multicolumn{2}{c|}{$u_0=u^{(1)}_0$} & \multicolumn{2}{c}{$u_0=u^{(2)}_0$}                                             \\
+        \cline{2-5}
+        \                  & 误差                                 & 误差阶                              & 误差                  & 误差阶            \\
+        \hline
+        18                 & 0.070691184165142                    &                                     & 9.516450685149100e-04 &                   \\
+        36                 & 0.035068156760164                    & 1.011368706867869                   & 2.209013314810101e-04 & 2.107021482750239 \\
+        72                 & 0.017471651701085                    & 1.005145600761598                   & 6.119404981949514e-05 & 1.851938829613794 \\
+        144                & 0.008721112611955                    & 1.002431895079183                   & 3.355653316092938e-05 & 0.866797706059126 \\
+        288                & 0.004357139541173                    & 1.001130883659627                   & 3.113077189045240e-05 & 0.108252324755212 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{全隐格式}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|cc|cc}
+        \hline
+        \multirow{2}*{$J$} & \multicolumn{2}{c|}{$u_0=u^{(1)}_0$} & \multicolumn{2}{c}{$u_0=u^{(2)}_0$}                                             \\
+        \cline{2-5}
+        \                  & 误差                                 & 误差阶                              & 误差                  & 误差阶            \\
+        \hline
+        18                 & 0.070497869834098                    &                                     & 0.009581607562645     &                   \\
+        36                 & 0.035044814005542                    & 1.008378698220213                   & 0.002355477958212     & 2.024247893896323 \\
+        72                 & 0.017468782833143                    & 1.004421877879651                   & 5.851302131711442e-04 & 2.009190213119203 \\
+        144                & 0.008720758215217                    & 1.002253610699342                   & 1.489742043041568e-04 & 1.973695171771822 \\
+        288                & 0.004357096478469                    & 1.001086514773134                   & 4.786330905838536e-05 & 1.638070494781345 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{CN格式}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|cc|cc}
+        \hline
+        \multirow{2}*{$J$} & \multicolumn{2}{c|}{$u_0=u^{(1)}_0$} & \multicolumn{2}{c}{$u_0=u^{(2)}_0$}                                             \\
+        \cline{2-5}
+        \                  & 误差                                 & 误差阶                              & 误差                  & 误差阶            \\
+        \hline
+        18                 & 0.070544987124860                    &                                     & 0.004331275707373     &                   \\
+        36                 & 0.035050564558861                    & 1.009105887723245                   & 0.001069609350932     & 2.017708026898790 \\
+        72                 & 0.017469490567238                    & 1.004600143858659                   & 2.675597101065143e-04 & 1.999151190817265 \\
+        144                & 0.008720845195000                    & 1.002297669985149                   & 7.326001953173807e-05 & 1.868762896464711 \\
+        288                & 0.004357106769506                    & 1.001097496465550                   & 3.518821729232728e-05 & 1.057933659648913 \\
+        \hline
+    \end{tabular}
+\end{table}
+从误差上看，三种数值格式均给出了两个初值条件下相容的数值解，但$u^{(1)}_0$的误差阶符合预期，$u^{(2)}_0$的误差阶不符合预期，呈现出快速下降态势。注意到$u^{(2)}_0$组的误差远小于$u^{(1)}_0$，误差阶快速下降的原因可归结为机器精度的影响。
+
+
+\end{document}
