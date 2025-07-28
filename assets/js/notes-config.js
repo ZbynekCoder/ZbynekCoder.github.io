@@ -331,6 +331,13 @@ export const NOTES_CONFIG = [
                             }
                         ]
                     }
+                ],
+                notes: [
+                    {
+                        id: '深度学习推荐系统',
+                        title: '深度学习推荐系统',
+                        file: 'assets/notes/Recommender Systems/books/深度学习推荐系统.md'
+                    }
                 ]
             },
             {
@@ -592,6 +599,12 @@ export const NOTES_CONFIG = [
                             }
                         ]
                     }
+                ]
+            },
+            {
+                category: "自然语言处理",
+                children: [
+                    {}
                 ]
             }
         ],
